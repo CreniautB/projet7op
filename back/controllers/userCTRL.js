@@ -24,7 +24,6 @@ exports.signup = (req, res, next) => {
         pseudo : req.body.pseudo,
         password: hash,
         role : req.body.role
-
       });
       user.save()
         .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
@@ -60,7 +59,7 @@ exports.login = (req, res, next) => {
           res.status(200).json({
             token: jwt.sign(
               { userId: user.id,
-                test : "ahahaha"
+                userRole : user.role
                 },
               'RANDOM_TOKEN_SECRET',
               { expiresIn: '24h' }

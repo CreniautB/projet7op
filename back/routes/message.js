@@ -1,6 +1,9 @@
 module.exports = app => {
     const message = require("../controllers/messageCTRL.js");
+    
     const auth = require('../middleware/auth');
+    const auto = require('../middleware/adminAuto.js')
+
 
     let router = require("express").Router();
   
@@ -8,9 +11,11 @@ module.exports = app => {
 
     router.get('/', auth, message.getAll);
 
+    router.delete('/:id', auth, auto, message.deleteMessage)
+
     // Commentaire
 
-    router.post('/:id/com', auth, message.commentCreate);
+    router.put('/:id/com', auth, message.commentCreate);
 
     app.use('/message', router);
 

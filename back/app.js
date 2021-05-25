@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -13,7 +12,9 @@ app.use((req, res, next) => {
     });
 
 app.use(express.json());       
-app.use(express.urlencoded()); 
+
+app.use(express.urlencoded({extended:false}));
+   
 
 require('./routes/user.js')(app);
 require('./routes/message.js')(app);

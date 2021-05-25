@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { Message } = require("../models/");
 const { Comment } = require("../models/")
-const user = require('../models/user');
+const models = require('../models');
 
 // Réupération du userId
 function getId(req) {
@@ -14,6 +14,11 @@ function getId(req) {
 exports.create = (req, res, next) => {
 
   const userId = getId(req)
+
+  const token = req.headers.authorization.split(' ')[1];
+  const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+
+  console.log(decodedToken)
 
   const msg = new Message({
     userId: userId,
@@ -61,5 +66,15 @@ exports.commentCreate = (req, res, next) => {
   });
 }
 
+exports.deleteMessage = (req, res, next) => {
 
-  
+  Message.destroy({
+      where: { id: req.params.id }
+  }) .then(() => {
+    res.status(201).json({ message : "message suprimé"});
+  })
+  .catch((error) => {
+    res.status(400).json({ error });
+  })
+
+};
