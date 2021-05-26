@@ -1,13 +1,10 @@
-const jwt = require('jsonwebtoken')
+const utilsToken = require("../middleware/tokenUtils")
 
 module.exports = (req, res, next) => {
 
     try {
-        const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-        const userRole = decodedToken.userRole
-        const userId = decodedToken.userId
-
+        const userId = utilsToken.getId(req)
+        const userRole = utilsToken.getRole(req)
 
         if ( userRole === "admin" ||(req.body.userId && req.body.userId == userId) ) {
             next();
@@ -19,5 +16,4 @@ module.exports = (req, res, next) => {
           error: new Error('Invalid request!')
         });
       }
-
 }

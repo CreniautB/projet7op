@@ -61,12 +61,37 @@ exports.login = (req, res, next) => {
               { userId: user.id,
                 userRole : user.role
                 },
-              'RANDOM_TOKEN_SECRET',
+                `${process.env.SECRET_KEY}`,
               { expiresIn: '24h' }
-            )
-          });
+            )});
         })
         .catch(error => res.status(500).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
 };
+
+exports.deleteAcc = (req, res, next) => {
+
+    User.destroy({
+        where: { id: req.params.id }
+    }) .then(() => {
+      res.status(201).json({ message : "utilisateur suprimé"});
+    })
+    .catch((error) => {
+      res.status(400).json({ error });
+    })
+  
+}
+
+exports.modifyAcc = (req, res , next) => {
+
+  const newContent = req.body.content
+
+  Message.update({ content: newContent },{ where: { id: req.params.id }})
+  .then(response => {
+    if (response > 0) { res.status(200).json({ message: "Méssage modifié" });
+    } else { res.status(400).json({ error: "Ce message n'existe pas" });
+  }
+})
+.catch(error => res.status(500).json({ error}))
+}
