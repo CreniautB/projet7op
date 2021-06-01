@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+
 const tokenUtils = require('./tokenUtils')
 
 // utilisation d'un token afin de vérifier l'authentification de l'utilisateur
@@ -7,6 +7,8 @@ module.exports = (req, res, next) => {
   try {
 
     const userId = tokenUtils.getId(req)
+
+    console.log(userId)
 
     if (!userId) {
       throw 'Invalid user ID';

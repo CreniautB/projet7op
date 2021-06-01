@@ -11,7 +11,7 @@ exports.commentCreate = (req, res, next) => {
   
     const comment = new Comment ({
       content : req.body.content,
-      userId : userId,
+      UserId : userId,
       MessageId : req.params.id
     });
     comment.save()

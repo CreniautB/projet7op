@@ -1,12 +1,18 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
+const models =  require('./');
+module.exports = (sequelize, Datatypes) => {
   const Comment = sequelize.define('Comment', {
-    content: DataTypes.STRING,
-  },
-    {});
-    Comment.associate = models => {
-      Comment.belongsTo(models.User, { as: 'user', constraints: false })
-    };
-  return Comment;
-};
+      id: {
+          type: Datatypes.INTEGER,
+          primaryKey: true,
+          unique: true,
+          allowNull: false,
+          autoIncrement: true
+      },
+      content: {
+          type: Datatypes.TEXT,
+          allowNull: false
+      }
+  });
 
+  return Comment;
+}

@@ -6,7 +6,9 @@ module.exports = (req, res, next) => {
         const userId = utilsToken.getId(req)
         const userRole = utilsToken.getRole(req)
 
-        if ( userRole === "admin" ||(req.body.userId && req.body.userId == userId) ) {
+        console.log(userRole)
+
+        if ( userRole === "admin" || (req.body.userId && req.body.userId == userId) ) {
             next();
         } else {
             throw new Error(`Vous n'êtes pas autorisé(e) à réaliser cette action`);

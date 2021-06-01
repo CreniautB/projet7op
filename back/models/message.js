@@ -1,13 +1,19 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, Datatypes) => {
   const Message = sequelize.define('Message', {
-    content: DataTypes.STRING,
-  },
-    {});
-    Message.associate = models => {
-      Message.hasMany(models.Comment)
-      Message.belongsTo(models.User, { as: 'user', constraints: false })
-    };
+      id: {
+          type: Datatypes.INTEGER,
+          primaryKey: true,
+          unique: true,
+          allowNull: false,
+          autoIncrement: true
+      },
+      content: {
+          type: Datatypes.TEXT,
+          allowNull: false
+      }
+  });
+  Message.associate = (models) => {
+      Message.hasMany(models.Comment, {as : 'Message', onDelete: 'CASCADE'})
+  }
   return Message;
-};
-
+}

@@ -1,13 +1,33 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, Datatypes) => {
   const User = sequelize.define('User', {
-    email: DataTypes.STRING,
-    pseudo: DataTypes.STRING,
-    password: DataTypes.STRING,
-    role: { type: DataTypes.STRING,
-            allowNull: false,
-            defaultValue: "user"
-        },
-  }, {});
+      id: {
+          type: Datatypes.INTEGER,
+          primaryKey: true,
+          unique: true,
+          allowNull: false,
+          autoIncrement: true
+      },
+      email: {
+          type: Datatypes.STRING,
+          allowNull: false,
+          isEmail: true,
+          unique: true,
+      },
+      password: {
+          type: Datatypes.STRING,
+          allowNull: false
+      },
+      role: {
+          type: Datatypes.STRING,
+          allowNull: false,
+          defaultValue: "user"
+      }
+  });
+
+  User.associate = (models) => {
+    User.hasMany(models.Comment, { as : 'userCom', onDelete: 'CASCADE',});
+    User.hasMany(models.Message, { as : 'userMsg', onDelete: 'CASCADE',});
+  };
+
   return User;
-};
+}

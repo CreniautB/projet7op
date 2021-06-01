@@ -1,13 +1,12 @@
 const models =  require('../models/');
 const utilsToken = require('../middleware/tokenUtils');
-const { mode } = require('crypto-js');
 
 exports.create = (req, res, next) => {
 
   const userId = utilsToken.getId(req)
 
   const msg = new models.Message({
-    userId: userId,
+    UserId: userId,
     content: req.body.content      
   });
   msg.save()
@@ -23,10 +22,10 @@ exports.getAll = (req, res, next) => {
 
   models.Message.findAll({
 
-    attributes: ['content','createdAt'],
+    attributes: ['content','createdAt', 'id'],
     order: [
-        ['createdAt', 'DESC'],
-        [models.Comment, 'createdAt', 'DESC'],
+        ['createdAt', 'ASC'],
+        [models.Comment, 'createdAt', 'ASC'],
     ],
     include: [
       {
@@ -55,7 +54,7 @@ exports.getAll = (req, res, next) => {
 
 exports.deleteMessage = (req, res, next) => {
 
-  Message.destroy({
+  models.Message.destroy({
       where: { id: req.params.id }
   }) .then(() => {
     res.status(201).json({ message : 'message suprimé'});
