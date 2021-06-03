@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import CreateMsg from '../createMsg/createMsg.jsx'
+import CreateCom from '../createCom/createCom.jsx'
 import DelMsg from '../delMsg/delMsg.jsx'
+import DelCom from "../delCom/delCom.jsx";
+import ModMsg from "../modMsg/modMsg.jsx"
+import ModCom from '../modCom/modCom.jsx'
+import './message.css';
 
 function Message() {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [haveToUpdate, setHaveToUpdate] = useState(null);
 
-
-  // Remarque : le tableau vide de dépendances [] indique
-  // que useEffect ne s’exécutera qu’une fois, un peu comme
-  // componentDidMount()
   useEffect(() => {
     axios.get("http://localhost:3000/message", {
       headers: {
@@ -21,47 +21,40 @@ function Message() {
     } )
       .then(res => {
         const message = res.data
-          setIsLoaded(true);
           setMessages(message);
+          setHaveToUpdate(false)
         },
-        // Remarque : il faut gérer les erreurs ici plutôt que dans
-        // un bloc catch() afin que nous n’avalions pas les exceptions
-        // dues à de véritables bugs dans les composants.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-  }, [])
 
-  if (error) {
-    return <div>Erreur : {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div>Chargement...</div>;
-  } else {
+      )
+  }, [haveToUpdate])
+
     return (
       <div>
         <ul>
-          {messages.map(item => { console.log(item.id); return (
-            
+          {messages.map(item => (
+          
             <li key={item.id}>
+              {item.User.id}
               {item.content}
-              <DelMsg id = {item.id} /> 
+              <DelMsg id = {item.id} user= {item.User.id} setHaveToUpdate={setHaveToUpdate}/> 
+              <ModMsg id = {item.id} user = {item.User.id} text = {item.content}setHaveToUpdate={setHaveToUpdate} />
+
               <ul>
               {item.Comments.map(com => (
                 <li key={com.createdAt}>
                   {com.content}
+                  <DelCom id = {com.id} user = {com.User.id} setHaveToUpdate={setHaveToUpdate} />
+                  <ModCom id = {com.id} user = {com.User.id} text = {com.content} setHaveToUpdate={setHaveToUpdate} />
                 </li>
               ))}
               </ul>
+              <CreateCom id = {item.id}  setHaveToUpdate={setHaveToUpdate} />
             </li>
-          )
-
-              })}
+          ))}
         </ul>
-        <CreateMsg />
+        <CreateMsg setHaveToUpdate={setHaveToUpdate} />
     </div>
     );
   }
-}
+
   export default Message

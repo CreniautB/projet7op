@@ -27,8 +27,9 @@ const Login = () => {
       })
       .then((response) => {
         if (response.status === 200) {
-            document.cookie = `authToken=${response.data.token}; sameSite=Strict`;
-            localStorage.setItem("token", response.data.token);
+            const test = "lol " + response.data.token
+            document.cookie = `authToken=${test}; sameSite=Strict`;
+            localStorage.setItem("token", test);
             loginOk(true)
         }
       })

@@ -1,25 +1,31 @@
 import React from "react";
 import axios from "axios";
 
-const CreateMsg = () => {
+const CreateMsg = ({setHaveToUpdate}) => {
 
   function createMsg(submitEvent) {
 
     submitEvent.preventDefault();
 
     const msg = { content: null};
-
     const form = submitEvent.target;
 
     msg.content = form.content.value;
     const msgJson = JSON.stringify(msg);
 
+    
     axios
       .post('http://localhost:3000/message', msgJson, {
         headers: {
         authorization: localStorage.token,
           "content-type": "application/json",
         },
+      }).then((response) => {
+        
+        if ( response.status === 201){
+          setHaveToUpdate(true)
+          console.log(response)
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -27,9 +33,9 @@ const CreateMsg = () => {
   }
 
   return (
-    <main className="signupDiv">
+    <main className="NewMsgDiv">
         
-      <form className="signupForm" onSubmit={createMsg}>
+      <form className="newMsgFrom" onSubmit={createMsg}>
 
         <h1 className="formTitle">Nouveau Message</h1>
 
@@ -37,7 +43,7 @@ const CreateMsg = () => {
 
         <input type="text" id="content" />
 
-        <button className="submitBtn" type="submit">
+        <button className="submitBtn" type="submit" >
           Envoyer
         </button>
       </form>

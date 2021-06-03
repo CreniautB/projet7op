@@ -14,14 +14,12 @@ function App() {
   return (
     <Router>
     <Switch>
-      <Route path="/signup">
-        <Signup />
-      </Route>
       <Route path="/message">
         <Message />
       </Route>
       <Route path="/">
         <Login />
+        <Signup />
       </Route>
     </Switch>
   </Router>

@@ -4,8 +4,6 @@ module.exports = app => {
 
 
   const auth = require('../middleware/auth');
-  const auto = require('../middleware/adminAuto.js')
-
 
   let router = require("express").Router();
 
@@ -13,19 +11,17 @@ module.exports = app => {
 
   router.get('/', auth, message.getAll);
 
-  router.delete('/:id', auth, auto, message.deleteMessage)
+  router.delete('/:id', auth, message.deleteMessage);
 
-  router.patch('/:id', auth, auto, message.modifyMessage)
+  router.patch('/:id/:userId', auth, message.modifyMessage);
 
   // Commentaire
 
   router.put('/:id/com', auth, comment.commentCreate);
 
-  router.delete('/:id/com/:comId', auth, auto, comment.deleteCom)
+  router.delete('/com/:comId', auth, comment.deleteCom)
 
-  router.patch('/:id/com/:comId', auth, auto, comment.modifyComment)
-
-
+  router.patch('/com/:comId/:userId', auth, comment.modifyComment)
 
   app.use('/message', router);
 

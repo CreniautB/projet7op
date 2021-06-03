@@ -8,8 +8,6 @@ module.exports = (req, res, next) => {
 
     const userId = tokenUtils.getId(req)
 
-    console.log(userId)
-
     if (!userId) {
       throw 'Invalid user ID';
     } else {

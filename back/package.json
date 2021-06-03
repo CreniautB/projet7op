@@ -18,6 +18,7 @@
     "mysql2": "^2.2.5",
     "parser": "^0.1.4",
     "sequelize": "^6.6.2",
+    "sequelize-cli": "^6.2.0",
     "sqlite3": "^5.0.2"
   }
 }

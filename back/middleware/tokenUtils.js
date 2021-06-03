@@ -4,7 +4,6 @@ exports.getId = (req) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, `${process.env.SECRET_KEY}`);
     const userId = decodedToken.userId
-    console.log(token)
     return userId
 }
 

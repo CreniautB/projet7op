@@ -1,18 +1,17 @@
 import React from "react";
 import axios from "axios";
 
-
-const DelMsg = ({ id, user, setHaveToUpdate }) => {
+const DelCom = ({ id, user, setHaveToUpdate }) => {
  
-  function delMsg(submitEvent) {
+  function delCom(submitEvent) {
 
     submitEvent.preventDefault();
 
-    const messageId = JSON.stringify(id)
+    const comId = JSON.stringify(id)
 
     const userId = JSON.stringify(user)
 
-    axios.delete('http://localhost:3000/message/'+messageId, {
+    axios.delete('http://localhost:3000/message/com/'+comId, {
         headers: {
         authorization: localStorage.token,
           "content-type": "application/json",
@@ -20,8 +19,7 @@ const DelMsg = ({ id, user, setHaveToUpdate }) => {
         data:{
           userId : userId
         }
-      })
-      .then((response) => {
+      }).then((response) => {
         
         if ( response.status === 201){
           setHaveToUpdate(true)
@@ -35,9 +33,9 @@ const DelMsg = ({ id, user, setHaveToUpdate }) => {
 
   return (
     <div>
-        <p onClick={delMsg} >X </p>
+        <p onClick={delCom} >X </p>
     </div>
   );
 };
 
-export default DelMsg
+export default DelCom;
