@@ -43,32 +43,41 @@ const [display, setDisplay] = useState(false);
       .then(() => setDisplay(false))
   }
 
-  if (!display)
+  if ( localStorage.userId == user){
+    if (!display)
+      {
+      return (
+        <div>
+            <button onClick={formdisplay}>
+                modifié le commentaire
+            </button>
+        </div>
+      );
+    }
+    else{
+          return (
+              <div>
+                  <form className="modComFrom" onSubmit={modCom}>
 
-  return (
-    <div>
-        <button onClick={formdisplay}>
-            modifié le commentaire
-        </button>
-    </div>
-  );
+                      <label htmlFor="content">Votre commentaire</label>
 
-  else{
-        return (
-            <div>
-                <form className="modComFrom" onSubmit={modCom}>
+                      <input type="text" id="content" defaultValue = {text} />
 
-                    <label htmlFor="content">Votre commentaire</label>
-
-                    <input type="text" id="content" defaultValue = {text} />
-
-                    <button className="submitBtn" type="submit">
-                        Envoyer votre commentaire
-                    </button>
-                </form>
-            </div>
-      )
+                      <button className="submitBtn" type="submit">
+                          Envoyer votre commentaire
+                      </button>
+                  </form>
+              </div>
+        )
+    }
   }
-};
+
+else {
+  return (
+    <div></div>
+  )
+}
+
+}
 
 export default ModCom;

@@ -37,8 +37,6 @@ const CreateMsg = ({setHaveToUpdate}) => {
         
       <form className="newMsgFrom" onSubmit={createMsg}>
 
-        <h1 className="formTitle">Nouveau Message</h1>
-
         <label htmlFor="content">Votre Message</label>
 
         <input type="text" id="content" />

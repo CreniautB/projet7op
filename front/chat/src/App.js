@@ -1,7 +1,7 @@
 import Message from './components/message/message/message'
-import Signup from './components/signup/signup'
-import Login from './components/login/login'
+import Auth from './components/auth/auth'
 import './App.css';
+
 
 import {
   BrowserRouter as Router,
@@ -12,17 +12,18 @@ import {
 
 function App() {
   return (
+    
     <Router>
     <Switch>
       <Route path="/message">
         <Message />
       </Route>
       <Route path="/">
-        <Login />
-        <Signup />
+        <Auth />
       </Route>
     </Switch>
   </Router>
+
   );
 }
 

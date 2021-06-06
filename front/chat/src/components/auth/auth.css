@@ -1,0 +1,59 @@
+.authContainer {
+  width: 80%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.signupDiv, .loginDiv {
+  margin-top: 2em;
+  background-color: white;
+  border-radius: 10px;
+  width: 500px;
+  padding: 20px;
+}
+
+.signupDiv .loginForm, .signupDiv .signupForm, .loginDiv .loginForm, .loginDiv .signupForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+.signupDiv .loginForm h2, .signupDiv .signupForm h2, .loginDiv .loginForm h2, .loginDiv .signupForm h2 {
+  text-align: center;
+}
+
+.signupDiv .loginForm label, .signupDiv .signupForm label, .loginDiv .loginForm label, .loginDiv .signupForm label {
+  margin-bottom: 1em;
+  margin-top: 0.5em;
+}
+
+.signupDiv .loginForm input, .signupDiv .signupForm input, .loginDiv .loginForm input, .loginDiv .signupForm input {
+  width: 250px;
+  height: 2em;
+  border-radius: 10px;
+  margin: auto;
+  background-color: #e8f0fe;
+}
+
+.signupDiv .loginForm button, .signupDiv .signupForm button, .loginDiv .loginForm button, .loginDiv .signupForm button {
+  width: 30%;
+  border-radius: 10px;
+  border: 0;
+  padding: 10px;
+  margin: auto;
+  margin-top: 1.5em;
+  background-color: #d1515a;
+  color: white;
+  font-weight: 700;
+}
+/*# sourceMappingURL=auth.css.map */

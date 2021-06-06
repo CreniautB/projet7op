@@ -37,8 +37,6 @@ const CreateCom = ({ id,setHaveToUpdate }) => {
         
       <form className="newcomFrom" onSubmit={createCom}>
 
-        <label htmlFor="content">commentez</label>
-
         <input type="text" id="content" />
 
         <button className="submitBtn" type="submit">

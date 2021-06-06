@@ -31,13 +31,21 @@ const DelMsg = ({ id, user, setHaveToUpdate }) => {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+if(localStorage.userId == user)
+  {
+    return (
+      <div>
+          <button onClick={delMsg} > Suprimer le message </button>
+      </div>
+    );
+  ;
   }
-
-  return (
-    <div>
-        <p onClick={delMsg} >X </p>
-    </div>
-  );
-};
-
+  else{
+    return(
+      <div></div>
+    )
+  };
+}
 export default DelMsg

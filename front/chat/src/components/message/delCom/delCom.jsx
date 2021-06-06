@@ -31,11 +31,21 @@ const DelCom = ({ id, user, setHaveToUpdate }) => {
       });
   }
 
-  return (
-    <div>
-        <p onClick={delCom} >X </p>
-    </div>
-  );
-};
+  if(localStorage.userId == user)
+  {
+    return (
+      <div>
+          <p onClick={delCom} > X </p>
+      </div>
+    );
+  ;
+  }
+  else{
+    return(
+      <div></div>
+    )
+  };
+}
+
 
 export default DelCom;

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Redirect, Route } from "react-router-dom";
 
+
 const Signup = () => {
 
-  const [signupCorrect, signupOk] = useState(null)
+  const [loginCorrect, loginOk] = useState(null)
 
   function signUp(submitEvent) {
 
@@ -28,47 +29,60 @@ const Signup = () => {
       })
       .then((response) => {
         if (response.status === 201) {
-          signupOk(true)
+          axios.post('http://localhost:3000/user/login', userJson, {
+            headers: {
+              "content-type": "application/json",
+            },
+          })
+          .then((response) => {
+            if (response.status === 200) {
+                const token = "token " + response.data.token
+                document.cookie = `authToken=${token}; sameSite=Strict`;
+                localStorage.setItem("token", token);
+                loginOk(true)
+            }
+          })
         }
       })
+
       .catch((error) => {
         console.log(error);
       });
   }
-
-  if ( signupCorrect ) {
+  if ( loginCorrect ) {
     return (
       <Route>
-        <Redirect to="/login" />
+        <Redirect to="/message" />
       </Route>
     );
   }
+
   else {
-  return (
-    <main className="signupDiv">
-      <form className="signupForm" onSubmit={signUp}>
+    return (
+      <main className="signupDiv">
+        <form className="signupForm" onSubmit={signUp}>
 
-        <h1 className="formTitle">S'inscrire</h1>
+          <h2 className="formTitle">S'inscrire</h2>
 
-        <label htmlFor="pseudo">Prénom</label>
+          <label htmlFor="pseudo">Prénom</label>
 
-        <input type="text" id="pseudo" />
+          <input type="text" id="pseudo" />
 
-        <label htmlFor="email">Email</label>
-    
-        <input type="email" id="email" />
+          <label htmlFor="email">Email</label>
+      
+          <input type="email" id="email" />
 
-        <label htmlFor="password">Mot de passe</label>
+          <label htmlFor="password">Mot de passe</label>
 
-        <input type="password" id="password" />
+          <input type="password" id="password" />
 
-        <button className="submitBtn" type="submit">
-          S'inscrire
-        </button>
-      </form>
-    </main>
-  );
-  }
-};
+          <button className="submitBtn" type="submit">
+            S'inscrire
+          </button>
+        </form>
+      </main>
+    );
+  };
+}
 
 export default Signup;

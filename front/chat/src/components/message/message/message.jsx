@@ -6,7 +6,9 @@ import DelMsg from '../delMsg/delMsg.jsx'
 import DelCom from "../delCom/delCom.jsx";
 import ModMsg from "../modMsg/modMsg.jsx"
 import ModCom from '../modCom/modCom.jsx'
+import Header from '../../header/header.jsx'
 import './message.css';
+
 
 function Message() {
   const [messages, setMessages] = useState([]);
@@ -28,31 +30,40 @@ function Message() {
       )
   }, [haveToUpdate])
 
-    return (
-      <div>
-        <ul>
-          {messages.map(item => (
-          
-            <li key={item.id}>
-              {item.User.id}
-              {item.content}
-              <DelMsg id = {item.id} user= {item.User.id} setHaveToUpdate={setHaveToUpdate}/> 
-              <ModMsg id = {item.id} user = {item.User.id} text = {item.content}setHaveToUpdate={setHaveToUpdate} />
 
-              <ul>
-              {item.Comments.map(com => (
-                <li key={com.createdAt}>
-                  {com.content}
-                  <DelCom id = {com.id} user = {com.User.id} setHaveToUpdate={setHaveToUpdate} />
-                  <ModCom id = {com.id} user = {com.User.id} text = {com.content} setHaveToUpdate={setHaveToUpdate} />
-                </li>
-              ))}
-              </ul>
-              <CreateCom id = {item.id}  setHaveToUpdate={setHaveToUpdate} />
-            </li>
-          ))}
-        </ul>
-        <CreateMsg setHaveToUpdate={setHaveToUpdate} />
+    return (
+      <div className="parentMsgContainer">
+        <Header />
+        <div className="messageContainer">
+
+          <ul className="feed" >
+            {messages.map(item => (
+              
+              <li key={item.id}>
+                <small>{item.User.pseudo}</small>
+                <div className="msgContentContainer">
+                  <div  ><p className="msgContent">{item.content}</p></div>
+                  <div>
+                    <DelMsg id = {item.id} user = {item.User.id} setHaveToUpdate={setHaveToUpdate}/> 
+                    <ModMsg id = {item.id} user = {item.User.id} text = {item.content}setHaveToUpdate={setHaveToUpdate} />
+                  </div>
+                </div>
+                <ul>
+                {item.Comments.map(com => (
+                  <li key={com.createdAt}>
+                    {com.content}
+                    <DelCom id = {com.id} user = {com.User.id} setHaveToUpdate={setHaveToUpdate} />
+                    <ModCom id = {com.id} user = {com.User.id} text = {com.content} setHaveToUpdate={setHaveToUpdate} />
+                  </li>
+                ))}
+                </ul>
+                <CreateCom id = {item.id}  setHaveToUpdate={setHaveToUpdate} />
+              </li>
+            ))}
+          </ul>
+
+          <CreateMsg setHaveToUpdate={setHaveToUpdate} />
+      </div>
     </div>
     );
   }

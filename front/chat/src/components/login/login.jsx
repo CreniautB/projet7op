@@ -27,9 +27,11 @@ const Login = () => {
       })
       .then((response) => {
         if (response.status === 200) {
-            const test = "lol " + response.data.token
-            document.cookie = `authToken=${test}; sameSite=Strict`;
-            localStorage.setItem("token", test);
+          const token = "token " + response.data.token
+          document.cookie = `authToken=${token}; sameSite=Strict`;
+          localStorage.setItem("token", token);
+          localStorage.setItem("userId", response.data.userId);
+        
             loginOk(true)
         }
       })
@@ -54,7 +56,7 @@ const Login = () => {
 
       <form className="loginForm" onSubmit={login}>
 
-        <h1 className="formTitle">Se connecter</h1>
+        <h2 className="formTitle">Se connecter</h2>
 
         <label htmlFor="email">Email</label>
     

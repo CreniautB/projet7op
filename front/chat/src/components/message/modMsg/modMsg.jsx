@@ -44,31 +44,42 @@ const [display, setDisplay] = useState(false);
       .then(() => setDisplay(false))
   }
 
-  if (!display)
+  console.log(localStorage.userId)
+  console.log(user)
+  if ( localStorage.userId == user){
+    if (!display)
 
-  return (
-    <div>
-        <button onClick={formdisplay}>
-            modifié le message
-        </button>
-    </div>
-  );
+    return (
+      <div>
+          <button onClick={formdisplay}>
+              modifié le message
+          </button>
+      </div>
+    );
 
+    else{
+          return (
+              <div>
+                  <form className="modMsgFrom" onSubmit={modMsg}>
+
+                      <label htmlFor="content">Votre Message</label>
+
+                      <input type="text" id="content" defaultValue = {text} />
+
+                      <button className="submitBtn" type="submit">
+                          Envoyer votre Message
+                      </button>
+                  </form>
+              </div>
+        )
+    }
+  }
   else{
-        return (
-            <div>
-                <form className="modMsgFrom" onSubmit={modMsg}>
+    return(
+      <div>
 
-                    <label htmlFor="content">Votre Message</label>
-
-                    <input type="text" id="content" defaultValue = {text} />
-
-                    <button className="submitBtn" type="submit">
-                        Envoyer votre Message
-                    </button>
-                </form>
-            </div>
-      )
+      </div>
+    )
   }
 };
 

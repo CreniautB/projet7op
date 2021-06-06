@@ -1,0 +1,54 @@
+.authContainer
+{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.signupDiv, .loginDiv
+{
+    margin-top: 2em;
+    background-color: white;
+    border-radius: 10px;
+    width: 500px;
+    padding: 20px;
+
+    .loginForm, .signupForm 
+    {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        h2 
+        {
+            text-align: center;
+        }
+
+        label 
+        {
+            margin-bottom: 1em;
+            margin-top: 0.5em
+        }
+
+        input {
+            width: 250px;
+            height: 2em;
+            border-radius: 10px;
+            margin: auto;
+            background-color:  rgb(232, 240, 254);
+        }
+        button 
+        {
+            width: 30%;
+            border-radius: 10px;
+            border: 0;
+            padding: 10px;
+            margin: auto;
+            margin-top: 1.5em;
+            background-color: rgba(209, 81, 90, 1);
+            color: white;
+            font-weight: 700;
+        }
+    }
+
+}
