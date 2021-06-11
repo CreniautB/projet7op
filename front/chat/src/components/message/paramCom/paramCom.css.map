@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAEI,QAFI,CAEJ,GAAG,CACH;EACI,WAAW,EAAE,GAAG;CACnB;;AAEL,AAAA,eAAe,CACf;EACI,UAAU,EAAE,CAAC;EACb,WAAW,EAAE,GAAG;CACnB",
+    "sources": [
+        "paramCom.scss"
+    ],
+    "names": [],
+    "file": "paramCom.css"
+}

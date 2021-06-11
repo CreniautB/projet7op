@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 
+import routes from '../../../service/messageCall'
 
 const DelMsg = ({ id, user, setHaveToUpdate }) => {
  
@@ -12,40 +13,21 @@ const DelMsg = ({ id, user, setHaveToUpdate }) => {
 
     const userId = JSON.stringify(user)
 
-    axios.delete('http://localhost:3000/message/'+messageId, {
-        headers: {
-        authorization: localStorage.token,
-          "content-type": "application/json",
-        },
-        data:{
-          userId : userId
-        }
-      })
-      .then((response) => {
-        
-        if ( response.status === 201){
-          setHaveToUpdate(true)
-          console.log(response)
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    routes.delMsg(messageId, setHaveToUpdate, userId)
+
+
   };
 
-if(localStorage.userId == user)
+if (localStorage.userId == user || localStorage.userRole === "admin")
   {
     return (
       <div>
           <button onClick={delMsg} > Suprimer le message </button>
       </div>
     );
-  ;
   }
-  else{
-    return(
-      <div></div>
-    )
-  };
+  return(
+    <div></div>
+  )
 }
 export default DelMsg

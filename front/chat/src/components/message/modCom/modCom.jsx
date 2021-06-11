@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import routes from '../../../service/messageCall'
 
 const ModCom = ({ id, user, text, setHaveToUpdate }) => {
 
@@ -28,22 +28,13 @@ const [display, setDisplay] = useState(false);
     const comId = JSON.stringify(id) 
     const userId = JSON.stringify(user)
 
+    // Envoie de la requete
+    routes.modCom(comId, userId, msgJson, setHaveToUpdate, setDisplay)
 
-    axios
-      .patch('http://localhost:3000/message/com/'+comId+"/"+userId,  msgJson, {
-        headers: {
-        authorization: localStorage.token,
-          "content-type": "application/json",
-        },
-      }).then((response) => {
-        if ( response.status === 200){
-          setHaveToUpdate(true)
-        }
-      })
-      .then(() => setDisplay(false))
+
   }
 
-  if ( localStorage.userId == user){
+  if (localStorage.userId === user || localStorage.userRole === "admin"){
     if (!display)
       {
       return (
@@ -54,29 +45,26 @@ const [display, setDisplay] = useState(false);
         </div>
       );
     }
-    else{
-          return (
-              <div>
-                  <form className="modComFrom" onSubmit={modCom}>
+      return (
+          <div>
+              <form className="modComFrom" onSubmit={modCom}>
 
-                      <label htmlFor="content">Votre commentaire</label>
+                  <label htmlFor="content">Votre commentaire</label>
 
-                      <input type="text" id="content" defaultValue = {text} />
+                  <input type="text" id="content" defaultValue = {text} />
 
-                      <button className="submitBtn" type="submit">
-                          Envoyer votre commentaire
-                      </button>
-                  </form>
-              </div>
-        )
-    }
+                  <button className="submitBtn" type="submit">
+                      Envoyer votre commentaire
+                  </button>
+              </form>
+          </div>
+    )
   }
 
-else {
   return (
     <div></div>
   )
-}
+
 
 }
 

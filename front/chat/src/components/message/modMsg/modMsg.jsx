@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import routes from '../../../service/messageCall'
 
 const ModMsg = ({ id, user, text, setHaveToUpdate }) => {
-
 
 const [display, setDisplay] = useState(false);
 
   function formdisplay(submitEvent) {
       
     submitEvent.preventDefault();
-
     setDisplay(true)
-
+    
   }      
 
   function modMsg(submitEvent) {
@@ -28,59 +27,45 @@ const [display, setDisplay] = useState(false);
     const msgId = JSON.stringify(id) 
     const userId = JSON.stringify(user)
 
+    // Envoie de la requete
+    routes.modMsg(msgId, userId, msgJson, setHaveToUpdate, setDisplay)
 
-    axios
-      .patch('http://localhost:3000/message/'+msgId+"/"+userId,  msgJson, {
-        headers: {
-        authorization: localStorage.token,
-          "content-type": "application/json",
-        },
-      })
-      .then((response) => {
-        if ( response.status === 200){
-          setHaveToUpdate(true)
-        }
-      })
-      .then(() => setDisplay(false))
   }
 
-  console.log(localStorage.userId)
-  console.log(user)
-  if ( localStorage.userId == user){
-    if (!display)
 
-    return (
-      <div>
-          <button onClick={formdisplay}>
-              modifié le message
-          </button>
-      </div>
-    );
+  if (localStorage.userId == user || localStorage.userRole == "admin"){
+   
+    if (!display){
 
-    else{
-          return (
-              <div>
-                  <form className="modMsgFrom" onSubmit={modMsg}>
+      return (
+        <div>
+            <button onClick={formdisplay}>
+                modifié le message
+            </button>
+        </div>
+      );}
+        return (
+          <div>
+              <form className="modMsgFrom" onSubmit={modMsg}>
 
-                      <label htmlFor="content">Votre Message</label>
+                  <label htmlFor="content">Votre Message</label>
 
-                      <input type="text" id="content" defaultValue = {text} />
+                  <input type="text" id="content" defaultValue = {text} />
 
-                      <button className="submitBtn" type="submit">
-                          Envoyer votre Message
-                      </button>
-                  </form>
-              </div>
+                  <button className="submitBtn" type="submit">
+                      Envoyer votre Message
+                  </button>
+              </form>
+          </div>
         )
-    }
-  }
-  else{
-    return(
-      <div>
+      }
 
-      </div>
-    )
-  }
-};
+      return(
+        <div>
+
+        </div>
+      )
+    
+  };
 
 export default ModMsg;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Redirect, Route } from "react-router-dom";
+
+import route from '../../service/userCall'
 
 const Login = () => {
 
@@ -19,25 +20,8 @@ const Login = () => {
 
     const userJson = JSON.stringify(user);
 
-    axios
-      .post('http://localhost:3000/user/login', userJson, {
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          const token = "token " + response.data.token
-          document.cookie = `authToken=${token}; sameSite=Strict`;
-          localStorage.setItem("token", token);
-          localStorage.setItem("userId", response.data.userId);
-        
-            loginOk(true)
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // Envoie de la requette
+    route.login(userJson, loginOk)
   }
 
   if ( loginCorrect ) {

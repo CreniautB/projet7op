@@ -24,8 +24,8 @@ exports.getAll = (req, res, next) => {
 
     attributes: ['id', 'content', "createdAt"],
     order: [
-        ['createdAt', 'DESC'],
-        [models.Comment, 'createdAt', 'DESC'],
+        ['createdAt', 'ASC'],
+        [models.Comment, 'createdAt', 'ASC'],
     ],
     include: [
         {

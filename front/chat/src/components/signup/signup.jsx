@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useRef } from "react";
 import { Redirect, Route } from "react-router-dom";
-
+import route from '../../service/userCall'
 
 const Signup = () => {
 
@@ -21,33 +20,11 @@ const Signup = () => {
 
     const userJson = JSON.stringify(user);
 
-    axios
-      .post('http://localhost:3000/user/signup', userJson, {
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-      .then((response) => {
-        if (response.status === 201) {
-          axios.post('http://localhost:3000/user/login', userJson, {
-            headers: {
-              "content-type": "application/json",
-            },
-          })
-          .then((response) => {
-            if (response.status === 200) {
-                const token = "token " + response.data.token
-                document.cookie = `authToken=${token}; sameSite=Strict`;
-                localStorage.setItem("token", token);
-                loginOk(true)
-            }
-          })
-        }
-      })
 
-      .catch((error) => {
-        console.log(error);
-      });
+    // Envoie de la requete
+    route.signup(userJson, loginOk)
+
+
   }
   if ( loginCorrect ) {
     return (

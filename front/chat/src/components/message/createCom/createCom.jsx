@@ -1,5 +1,8 @@
 import React from "react";
-import axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+
+import routes from '../../../service/messageCall'
 
 const CreateCom = ({ id,setHaveToUpdate }) => {
 
@@ -15,21 +18,9 @@ const CreateCom = ({ id,setHaveToUpdate }) => {
 
     const msgId = JSON.stringify(id)
 
-    axios
-      .put('http://localhost:3000/message/'+msgId+'/com', comJson, {
-        headers: {
-        authorization: localStorage.token,
-          "content-type": "application/json",
-        },
-      }).then((response) => {
-        
-        if ( response.status === 201){
-          setHaveToUpdate(true)
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // Envoie de la requete
+    routes.createCom(msgId, comJson,setHaveToUpdate)
+
   }
 
   return (
@@ -37,10 +28,10 @@ const CreateCom = ({ id,setHaveToUpdate }) => {
         
       <form className="newcomFrom" onSubmit={createCom}>
 
-        <input type="text" id="content" />
+        <input type="text" id="content" placeholder="nouveau commentaire"/>
 
         <button className="submitBtn" type="submit">
-          Envoyer commentaire
+          <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </form>
     </main>

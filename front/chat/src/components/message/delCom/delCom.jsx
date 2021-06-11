@@ -1,7 +1,8 @@
 import React from "react";
-import axios from "axios";
 
-const DelCom = ({ id, user, setHaveToUpdate }) => {
+import routes from '../../../service/messageCall'
+
+const DelCom = ({ id, user, setHaveToUpdate={setHaveToUpdate} }) => {
  
   function delCom(submitEvent) {
 
@@ -11,40 +12,25 @@ const DelCom = ({ id, user, setHaveToUpdate }) => {
 
     const userId = JSON.stringify(user)
 
-    axios.delete('http://localhost:3000/message/com/'+comId, {
-        headers: {
-        authorization: localStorage.token,
-          "content-type": "application/json",
-        },
-        data:{
-          userId : userId
-        }
-      }).then((response) => {
-        
-        if ( response.status === 201){
-          setHaveToUpdate(true)
-          console.log(response)
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // Envoie de la requete
+    routes.delCom(comId, userId,setHaveToUpdate)
+
+
   }
 
-  if(localStorage.userId == user)
+  if (localStorage.userId == user || localStorage.userRole == "admin")
   {
     return (
       <div>
-          <p onClick={delCom} > X </p>
+          <button onClick={delCom} >suprimer le commentaire</button>
       </div>
     );
   ;
   }
-  else{
-    return(
-      <div></div>
-    )
-  };
+
+  return(
+    <div></div>
+  )
 }
 
 

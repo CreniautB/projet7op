@@ -1,41 +1,40 @@
-import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import React, { useEffect, useState, useRef  } from "react";
 import CreateMsg from '../createMsg/createMsg.jsx'
 import CreateCom from '../createCom/createCom.jsx'
 import DelMsg from '../delMsg/delMsg.jsx'
-import DelCom from "../delCom/delCom.jsx";
 import ModMsg from "../modMsg/modMsg.jsx"
-import ModCom from '../modCom/modCom.jsx'
+import ParamCom from '../paramCom/paramCom.jsx'
 import Header from '../../header/header.jsx'
 import './message.css';
 
+import routes from '../../../service/messageCall'
 
+
+// Request for all messages
 function Message() {
   const [messages, setMessages] = useState([]);
   const [haveToUpdate, setHaveToUpdate] = useState(null);
+  const [haveToScroll, setHaveToScroll] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/message", {
-      headers: {
-        authorization: localStorage.token,
-        "content-type": "application/json",
-      },
-    } )
-      .then(res => {
-        const message = res.data
-          setMessages(message);
-          setHaveToUpdate(false)
-        },
-
-      )
+    // Envoie de la requette
+    routes.callMsg(setMessages, setHaveToUpdate, setHaveToScroll);
   }, [haveToUpdate])
 
+  // Scroll to latest message
+  useEffect(() => {
+    document.querySelector('.feed').scrollTo({
+      top: document.querySelector('.feed').scrollHeight,
+      left: 0,
+      behavior: 'smooth'
+    });
+  },
+  [haveToScroll])
 
     return (
       <div className="parentMsgContainer">
         <Header />
         <div className="messageContainer">
-
           <ul className="feed" >
             {messages.map(item => (
               
@@ -43,17 +42,17 @@ function Message() {
                 <small>{item.User.pseudo}</small>
                 <div className="msgContentContainer">
                   <div  ><p className="msgContent">{item.content}</p></div>
-                  <div>
+                  <div className="paramMsg" >
                     <DelMsg id = {item.id} user = {item.User.id} setHaveToUpdate={setHaveToUpdate}/> 
                     <ModMsg id = {item.id} user = {item.User.id} text = {item.content}setHaveToUpdate={setHaveToUpdate} />
                   </div>
                 </div>
                 <ul>
+                <div className="comTitle">Commentaires</div>
                 {item.Comments.map(com => (
-                  <li key={com.createdAt}>
-                    {com.content}
-                    <DelCom id = {com.id} user = {com.User.id} setHaveToUpdate={setHaveToUpdate} />
-                    <ModCom id = {com.id} user = {com.User.id} text = {com.content} setHaveToUpdate={setHaveToUpdate} />
+                  <li key={com.createdAt} className="commentParam">
+                    <p className="commentContent">{com.content}</p>
+                    <ParamCom id = {com.id} user = {com.User.id} text = {com.content} setHaveToUpdate={setHaveToUpdate} /> 
                   </li>
                 ))}
                 </ul>
@@ -62,7 +61,7 @@ function Message() {
             ))}
           </ul>
 
-          <CreateMsg setHaveToUpdate={setHaveToUpdate} />
+          <CreateMsg setHaveToUpdate={setHaveToUpdate} setHaveToScroll={setHaveToScroll} />
       </div>
     </div>
     );
