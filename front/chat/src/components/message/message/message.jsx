@@ -1,20 +1,19 @@
-import React, { useEffect, useState, useRef  } from "react";
-import CreateMsg from '../createMsg/createMsg.jsx'
-import CreateCom from '../createCom/createCom.jsx'
-import DelMsg from '../delMsg/delMsg.jsx'
-import ModMsg from "../modMsg/modMsg.jsx"
-import ParamCom from '../paramCom/paramCom.jsx'
+import React, { useEffect, useState } from "react";
+import CreateMsg from './createMsg/createMsg.jsx'
+import ParamCom from '../paramCom/paramCom'
 import Header from '../../header/header.jsx'
+import { Redirect, Route } from "react-router";
+import ParamMsg from "../paramMsg/paramMsg";
+
 import './message.css';
-
 import routes from '../../../service/messageCall'
-
 
 // Request for all messages
 function Message() {
   const [messages, setMessages] = useState([]);
   const [haveToUpdate, setHaveToUpdate] = useState(null);
   const [haveToScroll, setHaveToScroll] = useState(null);
+  const [disconnect, setDisconnect] = useState(false);
 
   useEffect(() => {
     // Envoie de la requette
@@ -31,37 +30,40 @@ function Message() {
   },
   [haveToScroll])
 
+  if (disconnect) {
+    return( 
+      <Route>
+        <Redirect to="/" />
+      </Route>
+    )
+  }
+
     return (
       <div className="parentMsgContainer">
         <Header />
         <div className="messageContainer">
           <ul className="feed" >
             {messages.map(item => (
-              
-              <li key={item.id}>
+              <li key={item.id}  >
                 <small>{item.User.pseudo}</small>
                 <div className="msgContentContainer">
-                  <div  ><p className="msgContent">{item.content}</p></div>
+                  <div><p className="msgContent">{item.content}</p></div>
                   <div className="paramMsg" >
-                    <DelMsg id = {item.id} user = {item.User.id} setHaveToUpdate={setHaveToUpdate}/> 
-                    <ModMsg id = {item.id} user = {item.User.id} text = {item.content}setHaveToUpdate={setHaveToUpdate} />
+                    <ParamMsg id = {item.id} user = {item.User.id} text = {item.content}  setHaveToUpdate={setHaveToUpdate}/>
                   </div>
                 </div>
                 <ul>
-                <div className="comTitle">Commentaires</div>
                 {item.Comments.map(com => (
                   <li key={com.createdAt} className="commentParam">
-                    <p className="commentContent">{com.content}</p>
+                    <p className="commentContent"><small>{com.User.pseudo} </small>{com.content}</p>
                     <ParamCom id = {com.id} user = {com.User.id} text = {com.content} setHaveToUpdate={setHaveToUpdate} /> 
                   </li>
                 ))}
                 </ul>
-                <CreateCom id = {item.id}  setHaveToUpdate={setHaveToUpdate} />
               </li>
             ))}
           </ul>
-
-          <CreateMsg setHaveToUpdate={setHaveToUpdate} setHaveToScroll={setHaveToScroll} />
+          <CreateMsg setHaveToUpdate={setHaveToUpdate} setHaveToScroll={setHaveToScroll} setDisconnect={setDisconnect}/>
       </div>
     </div>
     );

@@ -1,0 +1,43 @@
+.iconCom
+{
+    vertical-align: middle ;
+    svg 
+    {
+        vertical-align: middle;
+    }
+}
+.paramMsg
+{
+    width: 100%;
+    margin-top: 0.3em;
+    margin-left: 0.3em;
+
+    .paramMsgContainer
+    {
+        display: flex;
+        .paramMsgOption
+        {
+            display: flex;
+            div 
+            {
+                margin-left: 0.4em;
+            }
+        }
+    }
+    
+}
+
+
+.NewcomDiv
+{
+    text-align: center;
+    input 
+    {
+        margin-bottom: 0.5em;
+    }
+    input::placeholder
+    {
+        text-align: center;
+    }
+}
+

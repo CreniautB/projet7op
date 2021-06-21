@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Redirect, Route } from "react-router-dom";
-
-import route from '../../service/userCall'
+import ErrorLog from "./errorLog"
+import route from '../../../service/userCall'
 
 const Login = () => {
 
   const [loginCorrect, loginOk] = useState(null)
+  const [errorLog, setErrorLog] = useState(null) 
+  const form = useRef(null)
 
   function login(submitEvent) {
 
@@ -13,15 +15,13 @@ const Login = () => {
 
     const user = { email: null, password: null };
 
-    const form = submitEvent.target;
-
-    user.email = form.email.value;
-    user.password = form.password.value;
+    user.email = form.current.email.value;
+    user.password = form.current.password.value;
 
     const userJson = JSON.stringify(user);
 
-    // Envoie de la requette
-    route.login(userJson, loginOk)
+    // Envoie de la requette,
+    route.login(userJson, loginOk, setErrorLog)
   }
 
   if ( loginCorrect ) {
@@ -32,13 +32,19 @@ const Login = () => {
     );
   }
 
-  else {
+  if (errorLog) {
+    return (
+      <Route>
+        <Redirect to="/message" />
+      </Route>
+    );
+  }
 
   return (
 
     <main className="loginDiv">
 
-      <form className="loginForm" onSubmit={login}>
+      <form ref={form} className="loginForm" onSubmit={login}>
 
         <h2 className="formTitle">Se connecter</h2>
 
@@ -56,7 +62,6 @@ const Login = () => {
       </form>
     </main>
   );
-  }
 };
 
 export default Login;

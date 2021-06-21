@@ -1,7 +1,5 @@
 import React from "react";
-import axios from "axios";
-
-import routes from '../../../service/messageCall'
+import routes from '../../../../service/messageCall'
 
 const DelMsg = ({ id, user, setHaveToUpdate }) => {
  
@@ -18,7 +16,8 @@ const DelMsg = ({ id, user, setHaveToUpdate }) => {
 
   };
 
-if (localStorage.userId == user || localStorage.userRole === "admin")
+
+if (Number(localStorage.userId) === Number(user) || localStorage.userRole === "admin") 
   {
     return (
       <div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import routes from '../../../service/messageCall'
+import routes from '../../../../service/messageCall'
 
 const ModMsg = ({ id, user, text, setHaveToUpdate }) => {
 
@@ -33,7 +33,7 @@ const [display, setDisplay] = useState(false);
   }
 
 
-  if (localStorage.userId == user || localStorage.userRole == "admin"){
+  if (Number(localStorage.userId) === Number(user) || localStorage.userRole === "admin"){
    
     if (!display){
 

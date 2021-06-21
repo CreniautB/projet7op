@@ -6,8 +6,47 @@
         margin-left: 1em;
     }
 }
+
+.paramComContainer
+{
+    display: flex;
+}
 .paramComOption 
 {
     margin-top: 0;
     margin-left: 1em;
+    display: flex;
+    flex-direction: row;
+    div 
+    {
+        margin-right: 0.5em;
+    }
+}
+
+.iconCom
+{
+    color: rgba(209, 81, 90, 1);
+}
+.comTitle 
+{
+    margin-bottom: 0.5em;
+    font-size: 11px;
+}
+.commentParam
+{
+    display: flex;
+    flex-direction: row!important;
+
+    .commentContent 
+    {
+        display: flex;
+        flex-direction: column;
+        font-style: italic;
+        border-radius: 10px;
+        background-color: rgba(228, 230, 235, 1) ;
+        max-width: 30%;
+        padding: 0.6em;
+        margin: 0;
+    }
+
 }

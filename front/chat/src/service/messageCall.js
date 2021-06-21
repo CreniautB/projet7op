@@ -58,7 +58,7 @@ const modMsg = function(msgId, userId, msgJson, setHaveToUpdate, setDisplay )
 
 
 const delMsg = function(messageId, setHaveToUpdate, userId){
-  axios.delete(mainRoute+messageId, {
+  axios.delete(mainRoute+'/'+messageId, {
     headers: {
     authorization: localStorage.token,
       "content-type": "application/json",
@@ -89,7 +89,7 @@ const createCom = function(msgId, comJson, setHaveToUpdate)
   }).then((response) => {
     
     if ( response.status === 201){
-      setHaveToUpdate(true)
+      setHaveToUpdate(true) 
     }
   })
   .catch((error) => {

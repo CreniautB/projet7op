@@ -84,16 +84,3 @@ exports.deleteAcc = (req, res, next) => {
     })
   
 }
-
-exports.modifyAcc = (req, res , next) => {
-
-  const newContent = req.body.content
-
-  Message.update({ content: newContent },{ where: { id: req.params.id }})
-  .then(response => {
-    if (response > 0) { res.status(200).json({ message: "Méssage modifié" });
-    } else { res.status(400).json({ error: "Ce message n'existe pas" });
-  }
-})
-.catch(error => res.status(500).json({ error}))
-}

@@ -1,3 +1,18 @@
+::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+
+}
+::-webkit-scrollbar{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb{
+	background-color: rgba(209, 81, 90, 1);
+    border-radius: 15px;
+}
+
 .messageContainer
 {
     width: 85%;
@@ -8,23 +23,25 @@ input
 {
     padding: 0.5em;
     border-radius: 10px;
-    border: 0.1px solid black;
+    border: 0.1px solid rgb(118, 118, 118);
     background-color: rgba(228, 230, 235, 0.5) ;
 }
 
 .feed 
 {
-    max-height: 55vh;
+    max-height: 60vh;
     overflow-y: scroll;
     border-radius: 10px;
     list-style-type: none;
+    padding: 1em 8em 1em 8em ;
+    background-color: white;
 
-        
+    
     li 
     {
         display: flex;
         flex-direction: column;
-        margin-bottom: 1em;
+        margin-bottom: 0.5em;
 
         .msgContentContainer
         {
@@ -33,68 +50,14 @@ input
 
             .msgContent
             {
-
+                margin-top: 0.3em;
                 border-radius: 10px;
                 background-color: rgba(228, 230, 235, 1) ;
-                max-width: 70%;
-                padding: 1em;
-                font-size: 18px;
-
+                padding: 0.7em;
+                font-size: 16px;
             }
         }
-        .comTitle 
-        {
-            margin-bottom: 0.5em;
-            font-size: 11px;
-        }
-
-        .commentParam
-        {
-            display: flex;
-            flex-direction: row;
-
-            .commentContent 
-            {
-                font-style: italic;
-                border-radius: 10px;
-                background-color: rgba(228, 230, 235, 1) ;
-                max-width: 30%;
-                padding: 1em;
-                margin: 0;
-            }
-
-        }
-
     }
-}
-
-
-.newMsgFrom
-{
-    background-color: white;
-    border-radius: 10px;
-    text-align: center;
-    width: 100%;
-    height: 4em; 
-
-    textarea 
-    {
-        margin: 1em 2em 0 2em ;
-        width: 50%;
-        height: auto;
-        max-height: 4em;
-        min-height: 2em;
-        word-wrap: break-word;
-    }
-
-}
-
-
-.feed
- {
-    padding: 1em 8em 1em 8em ;
-    background-color: white;
-    border-radius: 10px;
 }
 
 button 
@@ -122,23 +85,3 @@ button
     padding: 0.5em;
 }
 
-.NewcomDiv
-{
-    margin-left: 40px;
-
-    input::placeholder
-    {
-        text-align: center;
-    }
-    input 
-    {
-        margin-right: 1em;
-    }
-}
-
-.paramMsg
-{
-    width: 100%;
-    margin-top: 1em;
-    margin-left: 1em;
-}

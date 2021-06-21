@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import routes from '../../../service/messageCall'
 
-const ModCom = ({ id, user, text, setHaveToUpdate }) => {
+const ModCom = ({ id, user, text, setHaveToUpdate, route }) => {
 
 
 const [display, setDisplay] = useState(false);
@@ -29,12 +28,12 @@ const [display, setDisplay] = useState(false);
     const userId = JSON.stringify(user)
 
     // Envoie de la requete
-    routes.modCom(comId, userId, msgJson, setHaveToUpdate, setDisplay)
+    route.modCom(comId, userId, msgJson, setHaveToUpdate, setDisplay)
 
 
   }
 
-  if (localStorage.userId === user || localStorage.userRole === "admin"){
+  if (Number(localStorage.userId) === Number(user) || localStorage.userRole === "admin") {
     if (!display)
       {
       return (

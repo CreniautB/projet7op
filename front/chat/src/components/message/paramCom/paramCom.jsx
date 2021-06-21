@@ -1,11 +1,12 @@
 import React, { useEffect, useState  } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
-import DelCom from '../delCom/delCom.jsx'
-import ModCom from '../modCom/modCom.jsx'
+import route from '../../../service/messageCall'
+import DelCom from './delCom/delCom'
+import ModCom from './modCom/modCom'
 import './paramCom.css'
 
-const ParamCom = ({id, user, text, setHaveToUpdate}) => {
+const ParamCom = ({id, user, text, setHaveToUpdate, item}) => {
     
     const [ display, setDisplay] = useState(false)
 
@@ -14,32 +15,37 @@ const ParamCom = ({id, user, text, setHaveToUpdate}) => {
         setDisplay(true)
     }
 
-    if (localStorage.userId == user) {
-
-    if (!display){
-        return (
-            <div className="iconCom">
-                <FontAwesomeIcon className="button" icon ={faEllipsisV} onClick={displayed}/>
-            </div>
-        )
+    function unDisplayed(submitEvent) {
+        submitEvent.preventDefault();
+        setDisplay(false)
     }
 
-    else {
-        return (
-            <div className="paramComOption" >
-                    <DelCom id ={id} user={user}  setHaveToUpdate={setHaveToUpdate}/>
-                    <ModCom id={id} user={user} text={text}  setHaveToUpdate={setHaveToUpdate} />
+    if (Number(localStorage.userId) === Number(user) || localStorage.userRole === "admin") {
 
-            </div>
-        )
-    }
-    }
-    else 
-    {
+        if (!display){
+            return (
+                <div className="iconCom">
+                    <FontAwesomeIcon className="iconCom" icon ={faEllipsisV} onClick={displayed}/>
+                </div>
+            )
+        }
+            return (
+                <div className="paramComContainer" >
+                    <div className="iconCom">
+                        <FontAwesomeIcon className="iconCom" icon ={faEllipsisV} onClick={unDisplayed}/>
+                    </div>
+                    <div className="paramComOption" >
+                            <DelCom id ={id} user={user}  setHaveToUpdate={setHaveToUpdate} route={route}/>
+                            <ModCom id={id} user={user} text={text}  setHaveToUpdate={setHaveToUpdate} route={route}/>
+                    </div>
+                </div>
+            )
+        
+        }
+
         return (
             <div></div>
         )
-    }
 }
 
 export default ParamCom

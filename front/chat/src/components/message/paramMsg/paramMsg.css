@@ -1,0 +1,54 @@
+.iconCom {
+  vertical-align: middle;
+}
+
+.iconCom svg {
+  vertical-align: middle;
+}
+
+.paramMsg {
+  width: 100%;
+  margin-top: 0.3em;
+  margin-left: 0.3em;
+}
+
+.paramMsg .paramMsgContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.paramMsg .paramMsgContainer .paramMsgOption {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.paramMsg .paramMsgContainer .paramMsgOption div {
+  margin-left: 0.4em;
+}
+
+.NewcomDiv {
+  text-align: center;
+}
+
+.NewcomDiv input {
+  margin-bottom: 0.5em;
+}
+
+.NewcomDiv input::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.NewcomDiv input:-ms-input-placeholder {
+  text-align: center;
+}
+
+.NewcomDiv input::-ms-input-placeholder {
+  text-align: center;
+}
+
+.NewcomDiv input::placeholder {
+  text-align: center;
+}
+/*# sourceMappingURL=paramMsg.css.map */

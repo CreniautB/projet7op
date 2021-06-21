@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
-import routes from '../../../service/messageCall'
+import routes from '../../../../service/messageCall'
 
 const CreateCom = ({ id,setHaveToUpdate }) => {
 
@@ -21,20 +21,22 @@ const CreateCom = ({ id,setHaveToUpdate }) => {
     // Envoie de la requete
     routes.createCom(msgId, comJson,setHaveToUpdate)
 
+    form.content.value = ''
+
   }
 
   return (
-    <main className="NewcomDiv">
+    <div className="NewcomDiv">
         
       <form className="newcomFrom" onSubmit={createCom}>
 
-        <input type="text" id="content" placeholder="nouveau commentaire"/>
+        <input type="text" id="content" placeholder="Commentez"/>
 
         <button className="submitBtn" type="submit">
           <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </form>
-    </main>
+    </div>
   );
 };
 
