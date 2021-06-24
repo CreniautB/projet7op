@@ -16,6 +16,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-items: center;
 }
 
 .paramMsg .paramMsgContainer .paramMsgOption {
@@ -24,16 +25,37 @@
   display: flex;
 }
 
-.paramMsg .paramMsgContainer .paramMsgOption div {
-  margin-left: 0.4em;
+.paramMsg .paramMsgContainer .paramMsgOption .delMsg {
+  margin: 0 0.5em 0 0.5em;
+}
+
+.paramMsg .paramMsgContainer .paramMsgOption .modMsgForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.paramMsg .paramMsgContainer .paramMsgOption .modMsgForm input {
+  margin: 0 0.5em 0.5em 0.5em;
 }
 
 .NewcomDiv {
   text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .NewcomDiv input {
-  margin-bottom: 0.5em;
+  margin: 0 0.5em 0.5em 0.5em;
 }
 
 .NewcomDiv input::-webkit-input-placeholder {

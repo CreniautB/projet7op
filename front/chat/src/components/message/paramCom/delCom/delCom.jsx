@@ -1,34 +1,31 @@
 import React from "react";
+import route from '../../../../service/messageCall'
 
-
-const DelCom = ({ id, user, setHaveToUpdate={setHaveToUpdate}, route }) => {
+const DelCom = ({ comId, userId, setHaveToUpdate }) => {
  
   function delCom(submitEvent) {
 
     submitEvent.preventDefault();
 
-    const comId = JSON.stringify(id)
-
-    const userId = JSON.stringify(user)
+    const com = JSON.stringify(comId)
+    const user = JSON.stringify(userId)
 
     // Envoie de la requete
-    route.delCom(comId, userId,setHaveToUpdate)
-
-
+    route.delCom(com, user)
+      .then(() => {
+        setHaveToUpdate(true)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
-  if (Number(localStorage.userId) === Number(user) || localStorage.userRole === "admin") {
+  
   
     return (
       <div>
-          <button onClick={delCom} >suprimer le commentaire</button>
+          <button onClick={delCom} >SUPRIMER</button>
       </div>
     );
-  ;
-  }
-
-  return(
-    <div></div>
-  )
 }
 
 

@@ -1,5 +1,5 @@
 .authContainer {
-  width: 80%;
+  width: 60%;
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11,9 +11,10 @@
 
 .signupDiv, .loginDiv {
   margin-top: 2em;
+  margin: 2em 0.5em 0 0.5em;
   background-color: white;
   border-radius: 10px;
-  width: 500px;
+  width: 330px;
   padding: 20px;
 }
 
@@ -55,5 +56,23 @@
   background-color: #d1515a;
   color: white;
   font-weight: 700;
+}
+
+@media screen and (max-width: 1000px) {
+  .authContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+  }
+  .authContainer div {
+    width: 280px;
+    margin: auto;
+    margin-bottom: 1.5em;
+  }
 }
 /*# sourceMappingURL=auth.css.map */

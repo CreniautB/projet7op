@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import route from '../../../../service/messageCall'
 
-const ModCom = ({ id, user, text, setHaveToUpdate, route }) => {
-
+const ModCom = ({ comId, userId, text, setHaveToUpdate }) => {
 
 const [display, setDisplay] = useState(false);
 
   function formdisplay(submitEvent) {
       
     submitEvent.preventDefault();
-
     setDisplay(true)
 
   }      
@@ -24,47 +25,40 @@ const [display, setDisplay] = useState(false);
     msg.content = form.content.value;
 
     const msgJson = JSON.stringify(msg)
-    const comId = JSON.stringify(id) 
-    const userId = JSON.stringify(user)
+    const com = JSON.stringify(comId) 
+    const user = JSON.stringify(userId)
 
     // Envoie de la requete
-    route.modCom(comId, userId, msgJson, setHaveToUpdate, setDisplay)
-
-
+   route.modCom(com, user, msgJson)
+    .then(() => {
+        setHaveToUpdate(true)
+        form.content.value = ''
+    })
+    .then(() => setDisplay(false))
   }
 
-  if (Number(localStorage.userId) === Number(user) || localStorage.userRole === "admin") {
-    if (!display)
-      {
+  
+    if (!display){
       return (
         <div>
             <button onClick={formdisplay}>
-                modifié le commentaire
+                MODIFIER
             </button>
         </div>
       );
     }
       return (
           <div>
-              <form className="modComFrom" onSubmit={modCom}>
-
-                  <label htmlFor="content">Votre commentaire</label>
+              <form className="modComForm" onSubmit={modCom}>
 
                   <input type="text" id="content" defaultValue = {text} />
 
-                  <button className="submitBtn" type="submit">
-                      Envoyer votre commentaire
+                  <button className="submitBtn" type="submit" >
+                    <FontAwesomeIcon icon={faPaperPlane} />
                   </button>
               </form>
           </div>
     )
-  }
-
-  return (
-    <div></div>
-  )
-
-
 }
 
 export default ModCom;

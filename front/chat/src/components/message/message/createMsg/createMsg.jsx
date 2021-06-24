@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import routes from '../../../../service/messageCall'
@@ -6,9 +6,6 @@ import AccHandle from "../../accHandle/accHandle";
 import  "./createMsg.css";
 
 const CreateMsg = ({setHaveToUpdate, setHaveToScroll, setDisconnect}) => {
-
-  const [clearInput, setClearInput] = useState(false)
-
   function createMsg(submitEvent) {
     
     submitEvent.preventDefault();
@@ -20,11 +17,17 @@ const CreateMsg = ({setHaveToUpdate, setHaveToScroll, setDisconnect}) => {
     const msgJson = JSON.stringify(msg);
     
     // Envoie de la requete
-    routes.createMsg(msgJson, setHaveToUpdate, setHaveToScroll, setClearInput)
-
-    if (clearInput){
-      form.content.value =''
-    }
+    if (msg.content !== ''){
+      return routes.createMsg(msgJson)
+      .then(() => {
+        setHaveToUpdate(true);
+        setHaveToScroll(true);
+        form.content.value = ''
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+   }
   }
 
   return (

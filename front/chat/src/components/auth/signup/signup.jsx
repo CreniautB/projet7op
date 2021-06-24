@@ -37,7 +37,7 @@ const Signup = () => {
 
   else {
     return (
-      <main className="signupDiv">
+      <div className="signupDiv">
         <form className="signupForm" onSubmit={signUp}>
 
           <h2 className="formTitle">S'inscrire</h2>
@@ -58,7 +58,7 @@ const Signup = () => {
             S'inscrire
           </button>
         </form>
-      </main>
+      </div>
     );
   };
 }

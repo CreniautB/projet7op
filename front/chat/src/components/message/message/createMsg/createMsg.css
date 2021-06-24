@@ -51,4 +51,25 @@
   border-radius: 15px;
   vertical-align: middle;
 }
+
+@media screen and (max-width: 1000px) {
+  .sendMessage {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .sendMessage .newMsgFrom {
+    padding: 0.5em;
+    width: auto;
+    margin: 0;
+    margin-bottom: 0.5em;
+  }
+  .sendMessage .newMsgFrom textarea {
+    margin-right: 0.2em;
+  }
+  .sendMessage .accHandle {
+    width: auto;
+  }
+}
 /*# sourceMappingURL=createMsg.css.map */

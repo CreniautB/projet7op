@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from "react"
 import routes from '../../../../service/messageCall'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
-const ModMsg = ({ id, user, text, setHaveToUpdate }) => {
+const ModMsg = ({ idMsg, userId, text, setHaveToUpdate }) => {
 
 const [display, setDisplay] = useState(false);
 
-  function formdisplay(submitEvent) {
-      
+  function formdisplay(submitEvent) {      
     submitEvent.preventDefault();
     setDisplay(true)
-    
   }      
 
   function modMsg(submitEvent) {
@@ -24,48 +23,37 @@ const [display, setDisplay] = useState(false);
     msg.content = form.content.value;
 
     const msgJson = JSON.stringify(msg)
-    const msgId = JSON.stringify(id) 
-    const userId = JSON.stringify(user)
+    const msgId = JSON.stringify(idMsg) 
+    const user = JSON.stringify(userId)
 
     // Envoie de la requete
-    routes.modMsg(msgId, userId, msgJson, setHaveToUpdate, setDisplay)
-
-  }
-
-
-  if (Number(localStorage.userId) === Number(user) || localStorage.userRole === "admin"){
+    routes.modMsg(msgId, user, msgJson)
+    .then(() => {
+        setHaveToUpdate(true)
+    })
+    .then(() => setDisplay(false))
+    }
    
     if (!display){
-
       return (
         <div>
             <button onClick={formdisplay}>
-                modifié le message
+                MODIFIER
             </button>
         </div>
       );}
         return (
           <div>
-              <form className="modMsgFrom" onSubmit={modMsg}>
-
-                  <label htmlFor="content">Votre Message</label>
+              <form className="modMsgForm" onSubmit={modMsg}>
 
                   <input type="text" id="content" defaultValue = {text} />
 
-                  <button className="submitBtn" type="submit">
-                      Envoyer votre Message
+                  <button className="submitBtn" type="submit" >
+                      <FontAwesomeIcon icon={faPaperPlane} />
                   </button>
               </form>
           </div>
-        )
-      }
-
-      return(
-        <div>
-
-        </div>
-      )
-    
+        )    
   };
 
 export default ModMsg;

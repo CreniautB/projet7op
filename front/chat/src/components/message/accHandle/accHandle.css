@@ -1,0 +1,30 @@
+.formSure {
+  position: absolute;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 35%;
+  background-color: #122542;
+  border-radius: 15px;
+  padding: 2em;
+  text-align: center;
+}
+
+.formSure button {
+  margin: 0.4em;
+}
+
+.formSure h1 {
+  color: white;
+  font-size: 17px;
+}
+
+@media screen and (max-width: 1000px) {
+  .formSure {
+    width: 200px;
+    padding: 1em;
+  }
+}
+/*# sourceMappingURL=accHandle.css.map */

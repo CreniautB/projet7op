@@ -5,6 +5,7 @@ import Header from '../../header/header.jsx'
 import { Redirect, Route } from "react-router";
 import ParamMsg from "../paramMsg/paramMsg";
 
+
 import './message.css';
 import routes from '../../../service/messageCall'
 
@@ -17,7 +18,14 @@ function Message() {
 
   useEffect(() => {
     // Envoie de la requette
-    routes.callMsg(setMessages, setHaveToUpdate, setHaveToScroll);
+   return routes.callMsg()
+    .then(res => {
+      const message = res.data
+          setMessages(message);
+          setHaveToUpdate(false)
+          setHaveToScroll(false)
+      },
+  )
   }, [haveToUpdate])
 
   // Scroll to latest message
@@ -49,15 +57,18 @@ function Message() {
                 <div className="msgContentContainer">
                   <div><p className="msgContent">{item.content}</p></div>
                   <div className="paramMsg" >
-                    <ParamMsg id = {item.id} user = {item.User.id} text = {item.content}  setHaveToUpdate={setHaveToUpdate}/>
+                    <ParamMsg idMsg = {item.id} userId = {item.User.id} text = {item.content}  setHaveToUpdate={setHaveToUpdate}/>
                   </div>
                 </div>
-                <ul>
+                <ul className="comment">
                 {item.Comments.map(com => (
-                  <li key={com.createdAt} className="commentParam">
-                    <p className="commentContent"><small>{com.User.pseudo} </small>{com.content}</p>
-                    <ParamCom id = {com.id} user = {com.User.id} text = {com.content} setHaveToUpdate={setHaveToUpdate} /> 
-                  </li>
+                  <div>
+                    <div className="nameComment">{com.User.pseudo} </div>
+                    <li key={com.createdAt} className="commentContainer">
+                      <p className="commentContent">{com.content}</p>
+                      <ParamCom comId = {com.id} userId = {com.User.id} text = {com.content} setHaveToUpdate={setHaveToUpdate} /> 
+                    </li>
+                  </div>
                 ))}
                 </ul>
               </li>

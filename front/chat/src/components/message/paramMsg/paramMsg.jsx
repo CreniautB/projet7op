@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import route from '../../../service/messageCall'
 import DelMsg from "./delMsg/delMsg";
 import ModMsg from "./modMsg/modMsg";
 import CreateCom from "./createCom/createCom";
 import './paramMsg.css';
 
-const ParamMsg = ({id, user, text, setHaveToUpdate}) => {
+const ParamMsg = ({idMsg, userId, text, setHaveToUpdate}) => {
     
     const [ display, setDisplay] = useState(false)
 
@@ -27,20 +28,19 @@ const ParamMsg = ({id, user, text, setHaveToUpdate}) => {
             <div className="iconCom">
                 <FontAwesomeIcon className="iconCom" icon={faPlusCircle} onClick={displayed}/>
             </div>
-        )
-    }
-
-        if (Number(localStorage.userId) === Number(user) || localStorage.userRole === "admin") {
-    
+            )
+        }
+        if (Number(localStorage.userId) === Number(userId) || localStorage.userRole === "admin") {
+            console.log("aa")
             return (
                 <div className="paramMsgContainer" >
                     <div className="iconCom">
-                        <FontAwesomeIcon className="iconCom" icon ={faPlusCircle} onClick={unDisplayed}/>
+                        <FontAwesomeIcon className="iconCom" icon ={faMinusCircle} onClick={unDisplayed}/>
                     </div>
                     <div className="paramMsgOption" >
-                            <DelMsg id ={id} user={user}  setHaveToUpdate={setHaveToUpdate} route={route}/>
-                            <ModMsg id={id} user={user} text={text}  setHaveToUpdate={setHaveToUpdate} route={route}/>
-                            <CreateCom id = {id}  setHaveToUpdate={setHaveToUpdate} />
+                            <DelMsg idMsg={idMsg} userId={userId}  setHaveToUpdate={setHaveToUpdate} route={route}/>
+                            <ModMsg idMsg={idMsg} userId={userId} text={text}  setHaveToUpdate={setHaveToUpdate} route={route}/>
+                            <CreateCom idMsg = {idMsg}  setHaveToUpdate={setHaveToUpdate} />
                     </div>
                 </div>
             )
@@ -49,13 +49,13 @@ const ParamMsg = ({id, user, text, setHaveToUpdate}) => {
         
         return (
             <div className="paramMsgContainer" >
-            <div className="iconCom">
-                <FontAwesomeIcon className="iconCom" icon ={faPlusCircle} onClick={unDisplayed}/>
-            </div>
-            <div className="paramMsgOption" >
-                    <CreateCom id = {id}  setHaveToUpdate={setHaveToUpdate} />
-            </div>
-        </div>
+                <div className="iconCom">
+                    <FontAwesomeIcon className="iconCom" icon ={faMinusCircle} onClick={unDisplayed}/>
+                </div>
+                <div className="paramMsgOption" >
+                        <CreateCom idMsg = {idMsg}  setHaveToUpdate={setHaveToUpdate} />
+                </div>
+             </div>
         )
 }
 

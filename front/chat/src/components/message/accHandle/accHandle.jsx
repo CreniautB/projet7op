@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import route from "../../../service/userCall"
+import  "./accHandle.css";
 
-const accHandle = ({setDisconnect}) => {
+const AccHandle = ({setDisconnect}) => {
 
-    function delAcc () {    
+    const [ isSure, setSure] = useState(false)
+
+    function yesForm () {
         route.delAcc()
         localStorage.clear()
         setDisconnect(true)
+    }
+    
+    function nonForm () {
+        setSure(false)
+    }
+
+    function delAcc () {    
+        setSure(true)
     };
 
     function disc () {
@@ -14,6 +25,19 @@ const accHandle = ({setDisconnect}) => {
         setDisconnect(true);
     };
 
+    if (isSure){
+        return (
+            <div className="formSure">
+                <h1>Etes vous sure de suprimer le compte ?</h1>
+                <button onClick={yesForm}>
+                    Oui
+                </button>
+                <button onClick={nonForm}>
+                    Non
+                </button>
+            </div>
+        )
+    }
 
     return (
         <div className="accHandle">
@@ -29,4 +53,4 @@ const accHandle = ({setDisconnect}) => {
 }
 
 
-export default accHandle;
+export default AccHandle;

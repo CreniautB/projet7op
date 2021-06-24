@@ -1,3 +1,4 @@
+
 .iconCom
 {
     vertical-align: middle ;
@@ -15,13 +16,27 @@
     .paramMsgContainer
     {
         display: flex;
+        justify-items: center;
+
         .paramMsgOption
         {
             display: flex;
-            div 
+
+            .delMsg
             {
-                margin-left: 0.4em;
+                margin: 0 0.5em 0 0.5em;
             }
+            
+            .modMsgForm 
+            {
+                display: flex;
+                flex-direction: column;
+                input 
+                {
+                    margin: 0 0.5em 0.5em 0.5em;
+                }
+            }
+
         }
     }
     
@@ -31,10 +46,13 @@
 .NewcomDiv
 {
     text-align: center;
+    display: flex;
+    flex-direction: column;
     input 
     {
-        margin-bottom: 0.5em;
+        margin: 0 0.5em 0.5em 0.5em;
     }
+
     input::placeholder
     {
         text-align: center;

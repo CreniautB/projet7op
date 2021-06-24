@@ -1,6 +1,6 @@
 .authContainer
 {
-    width: 80%;
+    width: 60%;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -8,9 +8,10 @@
 .signupDiv, .loginDiv
 {
     margin-top: 2em;
+    margin: 2em 0.5em 0 0.5em;
     background-color: white;
     border-radius: 10px;
-    width: 500px;
+    width: 330px;
     padding: 20px;
 
     .loginForm, .signupForm 
@@ -51,4 +52,23 @@
         }
     }
 
+}
+
+
+@media screen and (max-width : 1000px) 
+{
+    .authContainer
+    {   
+        flex-direction: column-reverse;
+        justify-content: center;
+        width: 100%;
+
+        div 
+        {
+            width: 280px;
+            margin: auto;
+            margin-bottom: 1.5em;
+
+        }
+    }
 }

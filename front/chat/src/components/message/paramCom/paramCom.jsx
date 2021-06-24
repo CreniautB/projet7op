@@ -1,12 +1,12 @@
-import React, { useEffect, useState  } from "react";
+import React, { useState  } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
-import route from '../../../service/messageCall'
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import DelCom from './delCom/delCom'
 import ModCom from './modCom/modCom'
 import './paramCom.css'
 
-const ParamCom = ({id, user, text, setHaveToUpdate, item}) => {
+const ParamCom = ({comId, userId, text, setHaveToUpdate}) => {
     
     const [ display, setDisplay] = useState(false)
 
@@ -20,23 +20,25 @@ const ParamCom = ({id, user, text, setHaveToUpdate, item}) => {
         setDisplay(false)
     }
 
-    if (Number(localStorage.userId) === Number(user) || localStorage.userRole === "admin") {
+    if (Number(localStorage.userId) === Number(userId) || localStorage.userRole === "admin") {
 
         if (!display){
             return (
-                <div className="iconCom">
-                    <FontAwesomeIcon className="iconCom" icon ={faEllipsisV} onClick={displayed}/>
+                <div className='paramComContainer'>
+                    <div className="iconCom">
+                        <FontAwesomeIcon className="iconCom" icon ={faPlusCircle} onClick={displayed}/>
+                    </div>
                 </div>
             )
         }
             return (
                 <div className="paramComContainer" >
                     <div className="iconCom">
-                        <FontAwesomeIcon className="iconCom" icon ={faEllipsisV} onClick={unDisplayed}/>
+                        <FontAwesomeIcon className="iconCom" icon ={faMinusCircle} onClick={unDisplayed}/>
                     </div>
                     <div className="paramComOption" >
-                            <DelCom id ={id} user={user}  setHaveToUpdate={setHaveToUpdate} route={route}/>
-                            <ModCom id={id} user={user} text={text}  setHaveToUpdate={setHaveToUpdate} route={route}/>
+                            <DelCom comId ={comId} userId={userId}  setHaveToUpdate={setHaveToUpdate}/>
+                            <ModCom comId={comId} userId={userId} text={text}  setHaveToUpdate={setHaveToUpdate}/>
                     </div>
                 </div>
             )

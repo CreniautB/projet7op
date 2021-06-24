@@ -1,10 +1,10 @@
 
 .iconCom
 {
-    svg
-    {
-        margin-left: 1em;
-    }
+    width: 20px;
+    height: 20px;
+    text-align: center;
+
 }
 
 .paramComContainer
@@ -32,7 +32,7 @@
     margin-bottom: 0.5em;
     font-size: 11px;
 }
-.commentParam
+.commentContainer
 {
     display: flex;
     flex-direction: row!important;
@@ -49,4 +49,50 @@
         margin: 0;
     }
 
+    .modComForm
+    {
+        display: flex;
+        flex-direction: column;
+
+        input 
+        {
+            margin: 0 0.5em 0.5em 0.5em;
+        }
+    }
+
+}
+
+
+@media screen and (max-width : 1000px) {
+    .commentContent
+    {
+        max-width: 80%!important;
+        word-wrap: break-word;
+
+    }
+
+    .commentContainer
+    {
+        flex-direction: column!important;
+        
+    }
+    .paramComContainer
+    {
+        flex-direction: column!important;
+        .iconCom
+        {
+            margin-bottom: 0.3em!important;
+            margin: auto;
+        }   
+    }
+    .paramComOption
+    {
+        flex-direction: column;
+        text-align: center;
+        margin: 0!important;
+        div
+        {
+            margin: 0;
+        }
+    }
 }

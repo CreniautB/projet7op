@@ -1,32 +1,34 @@
 import React from "react";
 import routes from '../../../../service/messageCall'
 
-const DelMsg = ({ id, user, setHaveToUpdate }) => {
+const DelMsg = ({ idMsg, userId, setHaveToUpdate }) => {
  
   function delMsg(submitEvent) {
 
     submitEvent.preventDefault();
 
-    const messageId = JSON.stringify(id)
+    const message = JSON.stringify(idMsg)
 
-    const userId = JSON.stringify(user)
+    const user = JSON.stringify(userId)
 
-    routes.delMsg(messageId, setHaveToUpdate, userId)
-
+     routes.delMsg(message, user)
+    .then(() => {
+    
+        setHaveToUpdate(true)
+    
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
   };
 
-
-if (Number(localStorage.userId) === Number(user) || localStorage.userRole === "admin") 
-  {
     return (
-      <div>
-          <button onClick={delMsg} > Suprimer le message </button>
+      <div className="delMsg">
+          <button onClick={delMsg} > SUPRIMER </button>
       </div>
     );
-  }
-  return(
-    <div></div>
-  )
+  
+
 }
 export default DelMsg

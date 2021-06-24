@@ -42,7 +42,7 @@ const Login = () => {
 
   return (
 
-    <main className="loginDiv">
+    <div className="loginDiv">
 
       <form ref={form} className="loginForm" onSubmit={login}>
 
@@ -60,7 +60,7 @@ const Login = () => {
             Connexion
         </button>
       </form>
-    </main>
+    </div>
   );
 };
 

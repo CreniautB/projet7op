@@ -4,7 +4,7 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 import routes from '../../../../service/messageCall'
 
-const CreateCom = ({ id,setHaveToUpdate }) => {
+const CreateCom = ({ idMsg ,setHaveToUpdate }) => {
 
   function createCom(submitEvent) {
 
@@ -16,12 +16,17 @@ const CreateCom = ({ id,setHaveToUpdate }) => {
     com.content = form.content.value;
     const comJson = JSON.stringify(com);
 
-    const msgId = JSON.stringify(id)
+    const msgId = JSON.stringify(idMsg )
 
     // Envoie de la requete
-    routes.createCom(msgId, comJson,setHaveToUpdate)
-
-    form.content.value = ''
+    return routes.createCom(msgId, comJson)
+    .then(() => {
+        setHaveToUpdate(true) 
+        form.content.value = ''
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
   }
 

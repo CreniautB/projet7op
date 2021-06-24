@@ -1,5 +1,7 @@
-.iconCom svg {
-  margin-left: 1em;
+.iconCom {
+  width: 20px;
+  height: 20px;
+  text-align: center;
 }
 
 .paramComContainer {
@@ -33,7 +35,7 @@
   font-size: 11px;
 }
 
-.commentParam {
+.commentContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -43,7 +45,7 @@
           flex-direction: row !important;
 }
 
-.commentParam .commentContent {
+.commentContainer .commentContent {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -57,5 +59,53 @@
   max-width: 30%;
   padding: 0.6em;
   margin: 0;
+}
+
+.commentContainer .modComForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.commentContainer .modComForm input {
+  margin: 0 0.5em 0.5em 0.5em;
+}
+
+@media screen and (max-width: 1000px) {
+  .commentContent {
+    max-width: 80% !important;
+    word-wrap: break-word;
+  }
+  .commentContainer {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+  }
+  .paramComContainer {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+  }
+  .paramComContainer .iconCom {
+    margin-bottom: 0.3em !important;
+    margin: auto;
+  }
+  .paramComOption {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+    margin: 0 !important;
+  }
+  .paramComOption div {
+    margin: 0;
+  }
 }
 /*# sourceMappingURL=paramCom.css.map */

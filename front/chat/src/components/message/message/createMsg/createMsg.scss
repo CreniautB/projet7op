@@ -42,3 +42,28 @@
     }
 }
 
+@media screen and (max-width : 1000px) {
+
+    .sendMessage
+    {
+        flex-direction: column;
+
+        .newMsgFrom
+        {
+            padding: 0.5em;
+            width: auto;
+            margin: 0;
+            margin-bottom: 0.5em;
+            textarea
+            {
+                margin-right: 0.2em;
+            }
+        }
+
+        .accHandle
+        {
+            width: auto;
+        }
+    }
+
+}
