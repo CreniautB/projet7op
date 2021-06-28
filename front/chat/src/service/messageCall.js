@@ -80,7 +80,7 @@ const delCom = function(comId, userId){
   })
 }
 
+const exports = {callMsg, createMsg, delMsg, modMsg, createCom, delCom, modCom}
 
 
-
-export default {callMsg, createMsg, delMsg, modMsg, createCom, delCom, modCom}
+export default exports

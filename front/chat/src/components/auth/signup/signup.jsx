@@ -1,11 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Redirect, Route } from "react-router-dom";
 import route from '../../../service/userCall'
 
 
 const Signup = () => {
 
-  const [loginCorrect, loginOk] = useState(null)
+  const [loginCorrect, loginOk] = useState(false)
+  const [errorLog, setErrorLog] = useState(false) 
 
   function signUp(submitEvent) {
 
@@ -24,6 +25,20 @@ const Signup = () => {
 
     // Envoie de la requete
     route.signup(userJson, loginOk)
+    .then(() => {
+        route.login(userJson)
+          .then((response) => {
+            const token = "token " + response.data.token
+            document.cookie = `token=${token}; sameSite=Strict`;
+            localStorage.setItem("token", token);
+            localStorage.setItem("userId", response.data.userId);
+            localStorage.setItem("userRole", response.data.userRole);
+            loginOk(true)
+          })
+    })
+    .catch(() => {
+      setErrorLog(true)
+    });
 
 
   }
@@ -53,6 +68,10 @@ const Signup = () => {
           <label htmlFor="password">Mot de passe</label>
 
           <input type="password" id="password" />
+
+          { errorLog ? <span className="errorLog">Mot de passe / email Incorrect</span>
+          : <div></div>  
+          }
 
           <button className="submitBtn" type="submit">
             S'inscrire

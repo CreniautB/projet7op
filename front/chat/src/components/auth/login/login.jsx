@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Redirect, Route } from "react-router-dom";
-import ErrorLog from "./errorLog"
 import route from '../../../service/userCall'
+import './login.css'
 
 const Login = () => {
 
-  const [loginCorrect, loginOk] = useState(null)
-  const [errorLog, setErrorLog] = useState(null) 
+  const [loginCorrect, loginOk] = useState(false)
+  const [errorLog, setErrorLog] = useState(false) 
   const form = useRef(null)
 
   function login(submitEvent) {
@@ -21,18 +21,21 @@ const Login = () => {
     const userJson = JSON.stringify(user);
 
     // Envoie de la requette,
-    route.login(userJson, loginOk, setErrorLog)
+    route.login(userJson, loginOk)
+    .then((response) => {
+        const token = "token " + response.data.token
+        document.cookie = `token=${token}; sameSite=Strict`;
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", response.data.userId);
+        localStorage.setItem("userRole", response.data.userRole);
+        loginOk(true)
+    })
+    .catch(() => {
+      setErrorLog(true)
+    });
   }
 
   if ( loginCorrect ) {
-    return (
-      <Route>
-        <Redirect to="/message" />
-      </Route>
-    );
-  }
-
-  if (errorLog) {
     return (
       <Route>
         <Redirect to="/message" />
@@ -55,6 +58,10 @@ const Login = () => {
         <label htmlFor="password">Mot de passe</label>
 
         <input type="password" id="password" />
+
+        { errorLog ? <span className="errorLog">Mot de passe / email Incorrect</span>
+          : <div></div>  
+      }
 
         <button className="submitBtn" type="submit">
             Connexion
