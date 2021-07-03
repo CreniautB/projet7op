@@ -37,7 +37,7 @@ const CreateMsg = ({setHaveToUpdate, setHaveToScroll, setDisconnect}) => {
 
         <textarea type="text" id="content" placeholder="Votre Message" />
 
-        <button className="submitBtn" type="submit" >
+        <button className="submitBtn button" type="submit" >
            <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </form>

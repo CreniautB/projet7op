@@ -23,7 +23,7 @@ const DelCom = ({ comId, userId, setHaveToUpdate }) => {
   
     return (
       <div>
-          <button onClick={delCom} >SUPRIMER</button>
+          <button className="button" onClick={delCom} >Suprimer</button>
       </div>
     );
 }

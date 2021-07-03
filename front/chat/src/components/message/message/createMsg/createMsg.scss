@@ -29,15 +29,17 @@
         justify-content: space-between;
         padding: 1em;
 
-    textarea 
-    {
-        width: 90%;
-        height: auto;
-        word-wrap: break-word;
-        padding: 10px;
-        border-radius: 15px;
-        vertical-align: middle;
-    }
+        textarea {
+            width: 90%;
+            height: auto;
+            word-wrap: break-word;
+            padding: 10px;
+            border-radius: 15px;
+            vertical-align: middle;
+        }
+        button {
+            margin: auto;
+        }
 
     }
 }

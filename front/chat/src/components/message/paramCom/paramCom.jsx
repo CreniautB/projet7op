@@ -23,19 +23,22 @@ const ParamCom = ({comId, userId, text, setHaveToUpdate}) => {
     if (Number(localStorage.userId) === Number(userId) || localStorage.userRole === "admin") {
 
         if (!display){
+
             return (
                 <div className='paramComContainer'>
-                    <div className="iconCom">
-                        <FontAwesomeIcon className="iconCom" icon ={faPlusCircle} onClick={displayed}/>
-                    </div>
+                    <button className="buttonPlusMinus button" onClick={displayed} >
+                        <FontAwesomeIcon icon={faPlusCircle}/>
+                    </button>
                 </div>
             )
         }
             return (
                 <div className="paramComContainer" >
-                    <div className="iconCom">
-                        <FontAwesomeIcon className="iconCom" icon ={faMinusCircle} onClick={unDisplayed}/>
-                    </div>
+                    
+                    <button className="buttonPlusMinus button" onClick={unDisplayed}>
+                        <FontAwesomeIcon icon ={faMinusCircle} />
+                    </button>
+
                     <div className="paramComOption" >
                             <DelCom comId ={comId} userId={userId}  setHaveToUpdate={setHaveToUpdate}/>
                             <ModCom comId={comId} userId={userId} text={text}  setHaveToUpdate={setHaveToUpdate}/>

@@ -16,9 +16,9 @@ const Signup = () => {
 
     const form = submitEvent.target;
 
-    user.email = form.email.value;
+    user.email = form.emailAuth.value;
     user.pseudo = form.pseudo.value;
-    user.password = form.password.value;
+    user.password = form.passwordAuth.value;
 
     const userJson = JSON.stringify(user);
 
@@ -28,6 +28,7 @@ const Signup = () => {
     .then(() => {
         route.login(userJson)
           .then((response) => {
+            // Configuration du token via la réponse de l'appel a l'api
             const token = "token " + response.data.token
             document.cookie = `token=${token}; sameSite=Strict`;
             localStorage.setItem("token", token);
@@ -58,16 +59,13 @@ const Signup = () => {
           <h2 className="formTitle">S'inscrire</h2>
 
           <label htmlFor="pseudo">Prénom</label>
-
           <input type="text" id="pseudo" />
 
-          <label htmlFor="email">Email</label>
-      
-          <input type="email" id="email" />
+          <label htmlFor="emailAuth">Email</label>
+          <input type="email" id="emailAuth" />
 
-          <label htmlFor="password">Mot de passe</label>
-
-          <input type="password" id="password" />
+          <label htmlFor="passwordAuth">Mot de passe</label>
+          <input type="password" id="passwordAuth" />
 
           { errorLog ? <span className="errorLog">Mot de passe / email Incorrect</span>
           : <div></div>  

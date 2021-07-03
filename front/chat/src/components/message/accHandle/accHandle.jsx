@@ -41,11 +41,11 @@ const AccHandle = ({setDisconnect}) => {
 
     return (
         <div className="accHandle">
-            <button onClick={delAcc} >
+            <button className="button" onClick={delAcc} >
                 Suprimer son compte
             </button>
 
-            <button onClick={disc} >
+            <button className="button" onClick={disc} >
                 Se Déconnecter
             </button>
         </div>

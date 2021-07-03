@@ -52,6 +52,10 @@
   vertical-align: middle;
 }
 
+.sendMessage .newMsgFrom button {
+  margin: auto;
+}
+
 @media screen and (max-width: 1000px) {
   .sendMessage {
     -webkit-box-orient: vertical;

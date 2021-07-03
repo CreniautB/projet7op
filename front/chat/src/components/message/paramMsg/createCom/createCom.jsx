@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 import routes from '../../../../service/messageCall'
 
 const CreateCom = ({ idMsg ,setHaveToUpdate }) => {
+
+  const [displayed, setDisplayed] = useState(false);
+
+  function formdisplay(submitEvent) {      
+    submitEvent.preventDefault();
+    setDisplayed(true)
+  }    
 
   function createCom(submitEvent) {
 
@@ -18,16 +25,27 @@ const CreateCom = ({ idMsg ,setHaveToUpdate }) => {
 
     const msgId = JSON.stringify(idMsg )
 
-    // Envoie de la requete
-    return routes.createCom(msgId, comJson)
-    .then(() => {
-        setHaveToUpdate(true) 
-        form.content.value = ''
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    if (com.content !== ''){
+      // Envoie de la requete
+      return routes.createCom(msgId, comJson)
+      .then(() => {
+          setHaveToUpdate(true) 
+          form.content.value = ''
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+  }
 
+  if (!displayed){
+    return(
+      <div>
+        <button className="button" onClick={formdisplay}>
+            Commenter
+        </button>
+      </div>
+    )
   }
 
   return (
@@ -37,7 +55,7 @@ const CreateCom = ({ idMsg ,setHaveToUpdate }) => {
 
         <input type="text" id="content" placeholder="Commentez"/>
 
-        <button className="submitBtn" type="submit">
+        <button className="submitBtn button" type="submit">
           <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </form>

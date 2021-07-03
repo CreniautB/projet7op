@@ -6,9 +6,7 @@ import './auth.css'
 
 const Auth = () => {
 
-
     return (
-
         <div>
             <Header />
             <div className="authContainer">
@@ -16,9 +14,7 @@ const Auth = () => {
             <Login />
             </div>
         </div>
-
     ) 
-
 }
 
 export default Auth

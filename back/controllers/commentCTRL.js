@@ -1,10 +1,5 @@
-const jwt = require('jsonwebtoken');
 const { Comment } = require("../models/")
 const utilsToken = require("../middleware/tokenUtils")
-const models =  require('../models/');
-
-// Réupération du userId
-
 
 exports.commentCreate = (req, res, next) => {
 
@@ -45,11 +40,9 @@ exports.deleteCom = (req, res, next) => {
     res.status(401).json({
       error: new Error('Invalid request!')
     });
-}
-  
-  };
+}};
 
-  exports.modifyComment = (req, res, next) => {
+exports.modifyComment = (req, res, next) => {
 
     try {
       const userId = utilsToken.getId(req)

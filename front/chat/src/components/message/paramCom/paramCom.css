@@ -1,13 +1,8 @@
-.iconCom {
-  width: 20px;
-  height: 20px;
-  text-align: center;
-}
-
 .paramComContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-left: 0.3em;
 }
 
 .paramComOption {
@@ -23,11 +18,7 @@
 }
 
 .paramComOption div {
-  margin-right: 0.5em;
-}
-
-.iconCom {
-  color: #d1515a;
+  margin-right: 0.3em;
 }
 
 .comTitle {
@@ -71,8 +62,9 @@
           flex-direction: column;
 }
 
-.commentContainer .modComForm input {
-  margin: 0 0.5em 0.5em 0.5em;
+.commentContainer .modComForm button {
+  margin: auto;
+  margin-top: 0.3em;
 }
 
 @media screen and (max-width: 1000px) {
@@ -91,10 +83,7 @@
     -webkit-box-direction: normal !important;
         -ms-flex-direction: column !important;
             flex-direction: column !important;
-  }
-  .paramComContainer .iconCom {
-    margin-bottom: 0.3em !important;
-    margin: auto;
+    margin-top: 0.3em;
   }
   .paramComOption {
     -webkit-box-orient: vertical;
@@ -105,7 +94,7 @@
     margin: 0 !important;
   }
   .paramComOption div {
-    margin: 0;
+    margin: 0.15em;
   }
 }
 /*# sourceMappingURL=paramCom.css.map */

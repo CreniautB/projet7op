@@ -25,18 +25,17 @@ const ParamMsg = ({idMsg, userId, text, setHaveToUpdate}) => {
 
     if (!display){
         return (
-            <div className="iconCom">
-                <FontAwesomeIcon className="iconCom" icon={faPlusCircle} onClick={displayed}/>
-            </div>
+            <button className="button buttonPlusMinus" onClick={displayed} >
+                <FontAwesomeIcon icon={faPlusCircle}/>
+            </button>
             )
         }
         if (Number(localStorage.userId) === Number(userId) || localStorage.userRole === "admin") {
-            console.log("aa")
             return (
                 <div className="paramMsgContainer" >
-                    <div className="iconCom">
-                        <FontAwesomeIcon className="iconCom" icon ={faMinusCircle} onClick={unDisplayed}/>
-                    </div>
+                    <button className="button buttonPlusMinus" onClick={unDisplayed}>
+                        <FontAwesomeIcon icon ={faMinusCircle} />
+                    </button>
                     <div className="paramMsgOption" >
                             <DelMsg idMsg={idMsg} userId={userId}  setHaveToUpdate={setHaveToUpdate} route={route}/>
                             <ModMsg idMsg={idMsg} userId={userId} text={text}  setHaveToUpdate={setHaveToUpdate} route={route}/>
@@ -49,9 +48,9 @@ const ParamMsg = ({idMsg, userId, text, setHaveToUpdate}) => {
         
         return (
             <div className="paramMsgContainer" >
-                <div className="iconCom">
+                <button className="buttonPlusMinus button">
                     <FontAwesomeIcon className="iconCom" icon ={faMinusCircle} onClick={unDisplayed}/>
-                </div>
+                </button>
                 <div className="paramMsgOption" >
                         <CreateCom idMsg = {idMsg}  setHaveToUpdate={setHaveToUpdate} />
                 </div>

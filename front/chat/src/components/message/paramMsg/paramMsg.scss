@@ -10,8 +10,7 @@
 .paramMsg
 {
     width: 100%;
-    margin-top: 0.3em;
-    margin-left: 0.3em;
+    margin: 0.3em;
 
     .paramMsgContainer
     {
@@ -21,16 +20,21 @@
         .paramMsgOption
         {
             display: flex;
+            margin-left: 0.5em;
 
-            .delMsg
+            div 
             {
-                margin: 0 0.5em 0 0.5em;
+                margin: 0 0.15em 0 0.15em;
             }
             
             .modMsgForm 
             {
                 display: flex;
                 flex-direction: column;
+                button 
+                {
+                    margin: auto;
+                }
                 input 
                 {
                     margin: 0 0.5em 0.5em 0.5em;

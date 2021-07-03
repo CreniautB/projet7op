@@ -25,7 +25,7 @@ const DelMsg = ({ idMsg, userId, setHaveToUpdate }) => {
 
     return (
       <div className="delMsg">
-          <button onClick={delMsg} > SUPRIMER </button>
+          <button className="button" onClick={delMsg} > Suprimer </button>
       </div>
     );
   

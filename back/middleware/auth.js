@@ -1,8 +1,6 @@
-
 const tokenUtils = require('./tokenUtils')
 
 // utilisation d'un token afin de vérifier l'authentification de l'utilisateur
-
 module.exports = (req, res, next) => {
   try {
 

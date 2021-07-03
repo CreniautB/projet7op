@@ -37,8 +37,8 @@ const [display, setDisplay] = useState(false);
     if (!display){
       return (
         <div>
-            <button onClick={formdisplay}>
-                MODIFIER
+            <button className="button" onClick={formdisplay}>
+                Modifier
             </button>
         </div>
       );}
@@ -48,7 +48,7 @@ const [display, setDisplay] = useState(false);
 
                   <input type="text" id="content" defaultValue = {text} />
 
-                  <button className="submitBtn" type="submit" >
+                  <button className="submitBtn button " type="submit" >
                       <FontAwesomeIcon icon={faPaperPlane} />
                   </button>
               </form>

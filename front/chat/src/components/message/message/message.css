@@ -25,6 +25,11 @@ input {
   background-color: rgba(228, 230, 235, 0.5);
 }
 
+.submitBtn {
+  width: 30px;
+  height: 30px;
+}
+
 .feed {
   max-height: 65vh;
   overflow-y: scroll;
@@ -64,13 +69,16 @@ input {
   font-size: 12px;
 }
 
-button {
-  font-size: 10px;
+.buttonPlusMinus {
+  width: 25px;
+  height: 25px;
+  padding: 0 !important;
+}
+
+.button {
   border-radius: 10px;
   border: none;
-  padding: 8px;
-  margin: auto;
-  margin-bottom: 1.5em;
+  padding: 6px;
   background-color: #d1515a;
   color: white;
   font-weight: 700;
@@ -79,15 +87,13 @@ button {
   font-size: 10px;
 }
 
-.button {
-  width: 15px !important;
-  height: 15px !important;
-  font-size: 10px;
-  border-radius: 3px;
-  background-color: #d1515a;
+.button svg {
+  margin: 0.2px 0 0 0.2px;
+}
+
+.button * {
   color: white;
-  font-weight: 700;
-  padding: 0.5em;
+  font-size: 12px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -122,6 +128,9 @@ button {
         -ms-flex-direction: column;
             flex-direction: column;
     text-align: center;
+  }
+  .paramMsgContainer .paramMsgOption div {
+    margin: 0.15em !important;
   }
 }
 /*# sourceMappingURL=message.css.map */

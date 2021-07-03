@@ -52,7 +52,7 @@ function Message() {
         <div className="messageContainer">
           <ul className="feed" >
             {messages.map(item => (
-              <li key={item.id}  >
+              <li key={item.id}>
                 <small>{item.User.pseudo}</small>
                 <div className="msgContentContainer">
                   <div><p className="msgContent">{item.content}</p></div>
@@ -62,7 +62,7 @@ function Message() {
                 </div>
                 <ul className="comment">
                 {item.Comments.map(com => (
-                  <div>
+                  <div key={com.id} >
                     <div className="nameComment">{com.User.pseudo} </div>
                     <li key={com.createdAt} className="commentContainer">
                       <p className="commentContent">{com.content}</p>

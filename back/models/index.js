@@ -1,3 +1,5 @@
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
@@ -24,7 +26,7 @@ fs
   });
 
 Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {+
+  if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });

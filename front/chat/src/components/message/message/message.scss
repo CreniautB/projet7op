@@ -24,32 +24,29 @@ input
     border-radius: 10px;
     border: 0.1px solid rgb(118, 118, 118);
     background-color: rgba(228, 230, 235, 0.5) ;
-
 }
 
-.feed 
-{
+.submitBtn {
+    width: 30px;
+    height: 30px;
+}
+
+.feed {
     max-height: 65vh;
     overflow-y: scroll;
     border-radius: 10px;
     list-style-type: none;
     padding: 1em 8em 1em 8em ;
     background-color: white;
-
     
-    li 
-    {
+    li {
         display: flex;
         flex-direction: column;
         margin-bottom: 0.5em;
 
-        .msgContentContainer
-        {
-            
+        .msgContentContainer{
             display: flex;
-
-            .msgContent
-            {
+                .msgContent {
                 margin-top: 0.3em;
                 border-radius: 10px;
                 background-color: rgba(228, 230, 235, 1) ;
@@ -65,32 +62,30 @@ input
     font-size: 12px;
 }
 
-button 
-{
-    font-size: 10px;
+.buttonPlusMinus{
+    width: 25px;
+    height: 25px;
+    padding: 0!important;
+}
+
+.button {
     border-radius: 10px;
     border: none;
-    padding: 8px;
-    margin: auto;
-    margin-bottom: 1.5em;
+    padding: 6px;
     background-color: rgba(209, 81, 90, 1);
     color: white;
     font-weight: 700;
     letter-spacing: 1px;
     font-weight: 400;
     font-size: 10px;
-}
+    svg {
+        margin: 0.2px 0 0 0.2px;
+    }
+    * {
+        color: white;
+        font-size: 12px;
+    }
 
-.button {
-
-    width: 15px!important;
-    height: 15px!important;
-    font-size: 10px;
-    border-radius: 3px;
-    background-color: rgba(209, 81, 90, 1);
-    color: white;
-    font-weight: 700;
-    padding: 0.5em;
 }
 
 @media screen and (max-width : 1000px) {
@@ -128,11 +123,9 @@ button
         {
             flex-direction: column;
             text-align: center;
-            
+            div {
+                margin: 0.15em!important;
+            }           
         }
     }
-
-
-
-
 }
