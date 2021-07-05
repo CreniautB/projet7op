@@ -51,6 +51,7 @@ function Message() {
         <Header />
         <div className="messageContainer">
           <ul className="feed" >
+
             {messages.map(item => (
               <li key={item.id}>
                 <small>{item.User.pseudo}</small>
@@ -61,6 +62,7 @@ function Message() {
                   </div>
                 </div>
                 <ul className="comment">
+                  
                 {item.Comments.map(com => (
                   <div key={com.id} >
                     <div className="nameComment">{com.User.pseudo} </div>

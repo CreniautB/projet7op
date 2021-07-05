@@ -21,7 +21,7 @@ const signup = function (userJson ){
 }
 
 const delAcc = function(){
-  axios.delete(mainRoute+"/delete/"+localStorage.userId, {
+  axios.delete(mainRoute+"/"+localStorage.userId, {
     headers: {
       authorization: localStorage.token,
       "content-type" : "application/json",

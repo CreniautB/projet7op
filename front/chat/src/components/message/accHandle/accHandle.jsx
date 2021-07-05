@@ -29,10 +29,10 @@ const AccHandle = ({setDisconnect}) => {
         return (
             <div className="formSure">
                 <h1>Etes vous sure de suprimer le compte ?</h1>
-                <button onClick={yesForm}>
+                <button onClick={yesForm} className="button">
                     Oui
                 </button>
-                <button onClick={nonForm}>
+                <button onClick={nonForm} className="button">
                     Non
                 </button>
             </div>
