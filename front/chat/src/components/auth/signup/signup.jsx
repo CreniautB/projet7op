@@ -22,7 +22,6 @@ const Signup = () => {
 
     const userJson = JSON.stringify(user);
 
-
     // Envoie de la requete
     route.signup(userJson, loginOk)
     .then(() => {
@@ -30,7 +29,6 @@ const Signup = () => {
           .then((response) => {
             // Configuration du token via la réponse de l'appel a l'api
             const token = "token " + response.data.token
-            document.cookie = `token=${token}; sameSite=Strict`;
             localStorage.setItem("token", token);
             localStorage.setItem("userId", response.data.userId);
             localStorage.setItem("userRole", response.data.userRole);

@@ -23,7 +23,6 @@ const ParamCom = ({comId, userId, text, setHaveToUpdate}) => {
     if (Number(localStorage.userId) === Number(userId) || localStorage.userRole === "admin") {
 
         if (!display){
-
             return (
                 <div className='paramComContainer'>
                     <button className="buttonPlusMinus button" onClick={displayed} >
@@ -32,6 +31,7 @@ const ParamCom = ({comId, userId, text, setHaveToUpdate}) => {
                 </div>
             )
         }
+        
             return (
                 <div className="paramComContainer" >
                     
@@ -45,7 +45,6 @@ const ParamCom = ({comId, userId, text, setHaveToUpdate}) => {
                     </div>
                 </div>
             )
-        
         }
 
         return (

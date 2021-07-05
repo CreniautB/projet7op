@@ -11,7 +11,6 @@ const [display, setDisplay] = useState(false);
       
     submitEvent.preventDefault();
     setDisplay(true)
-
   }      
 
   function modCom(submitEvent) {
@@ -35,6 +34,7 @@ const [display, setDisplay] = useState(false);
         form.content.value = ''
     })
     .then(() => setDisplay(false))
+    .catch((error) => console.log(error))
   }
 
   

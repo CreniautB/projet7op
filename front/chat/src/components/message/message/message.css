@@ -114,7 +114,7 @@ input {
   }
   .msgContentContainer .paramMsg .iconCom {
     margin: auto;
-    margin-bottom: 0.2em;
+    margin-bottom: 0.1em;
   }
   .paramMsgContainer {
     -webkit-box-orient: vertical;

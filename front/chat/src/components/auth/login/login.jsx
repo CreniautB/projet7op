@@ -24,7 +24,6 @@ const Login = () => {
     route.login(userJson, loginOk)
     .then((response) => {
         const token = "token " + response.data.token
-        document.cookie = `token=${token}; sameSite=Strict`;
         localStorage.setItem("token", token);
         localStorage.setItem("userId", response.data.userId);
         localStorage.setItem("userRole", response.data.userRole);

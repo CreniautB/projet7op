@@ -2,7 +2,6 @@ module.exports = app => {
   const message = require("../controllers/messageCTRL.js");
   const comment = require("../controllers/commentCTRL.js");
 
-
   const auth = require('../middleware/auth');
 
   let router = require("express").Router();
